@@ -5,13 +5,13 @@ This is the interface that allows users to view stablecoin exchange rates for di
 ### Installation
 
 ```
-$ yarn
+$ npm i
 ```
 
 ### Local Development
 
 ```
-$ yarn start
+$ npm run dev
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
