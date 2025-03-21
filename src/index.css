@@ -1,6 +1,14 @@
+html {
+  font-size: 62.5%;
+  @media screen and (max-width: 1300px) {
+    font-size: 55%;
+  }
+}
+
 @import "tailwindcss";
 
 @theme {
-  --color-background: #242424; 
+  --color-background: #141414; 
+  --color-white-dull: #FFFFFF80;
 }
 
