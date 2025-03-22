@@ -3,6 +3,7 @@ import { cryptoCurrencies } from '../../data/cryptoCurrencies';
 import { fiatCurrencies } from '../../data/fiatCurrencies';
 import { CurrencyInput } from './CurrencyInput';
 import { SwapButton } from './SwapButton';
+import { useState } from 'react';
 
 const CurrencyConverter = () => {
     const {
@@ -20,7 +21,29 @@ const CurrencyConverter = () => {
         fiatCurrencies.find(c => c.code === 'USD') || fiatCurrencies[0]
     );
 
+    // Mantener un estado local para las listas de monedas
+    const [fromList, setFromList] = useState(cryptoCurrencies);
+    const [toList, setToList] = useState(fiatCurrencies);
+
+    // Función personalizada para manejar el swap
+    const handleSwapWithLists = () => {
+        // Intercambiar las listas
+        setFromList(toList);
+        setToList(fromList);
+        // Llamar al swap original
+        handleSwap();
+    };
+
     return (
+        <>
+        <div className="flex flex-col items-center justify-center gap-2 mb-10">
+            <p className="text-white/50 text-[24px]">
+                Your only <span className="text-white italic">Stablecoin</span>
+            </p>
+            <p className="text-white/50 text-[24px]">
+                rate converter to <span className="text-white italic">any fiat</span>
+            </p>
+        </div>
         <div className="flex items-center bg-[#191B1F] text-white p-4 max-w-[571px] mx-auto rounded-[28px] gap-3">
             <CurrencyInput
                 label="from"
@@ -29,11 +52,11 @@ const CurrencyConverter = () => {
                 amount={fromAmount}
                 onAmountChange={handleFromAmountChange}
                 type="from"
-                currencies={cryptoCurrencies}
+                currencies={fromList}
             />
 
             <div className="flex justify-center -my-1">
-                <SwapButton onClick={handleSwap} />
+                <SwapButton onClick={handleSwapWithLists} />
             </div>
 
             <CurrencyInput
@@ -43,9 +66,10 @@ const CurrencyConverter = () => {
                 amount={toAmount}
                 onAmountChange={handleToAmountChange}
                 type="to"
-                currencies={fiatCurrencies}
+                currencies={toList}
             />
         </div>
+        </>
     );
 }
 
