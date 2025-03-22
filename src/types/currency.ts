@@ -3,6 +3,7 @@ export interface Currency {
   name: string;
   symbol: string;
   type: 'fiat' | 'crypto';
-  flag?: string;
+  countryCode?: string;  // ISO country code for flag icons
+  iconUrl?: string;     // URL for crypto currency icons
   rate: number; // Rate relative to USD
 } 

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Search } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 import { Currency } from '../../types/currency';
 import { GB, US, EU, MK, MM, AL, AR, AU } from 'country-flag-icons/react/3x2';
 
-const FlagIcon = ({ code, fallbackFlag }: { code: string, fallbackFlag?: string }) => {
+const FlagIcon = ({ code }: { code: string }) => {
   const flagComponents: Record<string, React.ComponentType<{ className?: string }>> = {
     'USD': US,
     'GBP': GB,
@@ -19,9 +19,7 @@ const FlagIcon = ({ code, fallbackFlag }: { code: string, fallbackFlag?: string 
   if (IconComponent) {
     return <IconComponent className="w-5 h-5 rounded-full" />;
   }
-  return fallbackFlag ? (
-    <span className="text-xl">{fallbackFlag}</span>
-  ) : null;
+  return null;
 };
 
 interface CurrencySelectProps {
@@ -49,20 +47,27 @@ export function CurrencySelect({
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 px-2 py-1 hover:bg-[#3C3C3E] transition-colors rounded-lg"
+          className="flex items-center justify-center gap-2 px-2 py-2 !rounded-[20px] bg-white/5 hover:bg-[#3C3C3E] transition-colors max-w-[70px] !w-screen"
         >
           {selectedCurrency.type === 'fiat' ? (
-            <FlagIcon code={selectedCurrency.code} fallbackFlag={selectedCurrency.flag} />
+            <div className="flex items-center justify-center w-6 h-6 rounded-full">
+                <FlagIcon code={selectedCurrency.code} />
+            </div>
           ) : (
-            <span className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center text-sm">
-              {selectedCurrency.symbol}
-            </span>
+            <img 
+              src={selectedCurrency.iconUrl} 
+              alt={selectedCurrency.code}
+              className="w-6 h-6 rounded-full"
+            />
           )}
           <span className="font-medium text-sm">{selectedCurrency.code}</span>
+          <ChevronDown className="w-5 h-5" />
         </button>
   
         {isOpen && (
-          <div className="absolute top-full mt-2 w-64 bg-[#2C2C2E] rounded-xl shadow-lg z-10">
+          <div className={
+            `absolute top-[3rem] mt-2 w-64 bg-[#2C2C2E] rounded-xl shadow-lg z-10 ${type === 'from' ? 'left-0' : 'right-0'}`
+          }>
             <div className="p-2">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -86,11 +91,13 @@ export function CurrencySelect({
                   }}
                 >
                   {currency.type === 'fiat' ? (
-                    <FlagIcon code={currency.code} fallbackFlag={currency.flag} />
+                    <FlagIcon code={currency.code} />
                   ) : (
-                    <span className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center text-sm">
-                      {currency.symbol}
-                    </span>
+                    <img 
+                      src={currency.iconUrl} 
+                      alt={currency.code}
+                      className="w-5 h-5 rounded-full"
+                    />
                   )}
                   <div className="flex flex-col items-start">
                     <div className="flex items-center gap-2">

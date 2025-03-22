@@ -21,7 +21,7 @@ const CurrencyConverter = () => {
     );
 
     return (
-        <div className="flex flex-col bg-[#191B1F] text-white p-4 max-w-[420px] mx-auto rounded-[20px] gap-2">
+        <div className="flex items-center bg-[#191B1F] text-white p-4 max-w-[571px] mx-auto rounded-[28px] gap-3">
             <CurrencyInput
                 label="from"
                 selectedCurrency={fromCurrency}

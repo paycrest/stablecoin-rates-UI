@@ -2,24 +2,27 @@ import { Currency } from '../types/currency';
 
 export const cryptoCurrencies: Currency[] = [
   {
+    code: 'USDT',
+    name: 'USD Tether',
+    symbol: 'USDT',
+    type: 'crypto',
+    iconUrl: '/cryptoCurrencies/USDT.svg',
+    rate: 1
+  },
+  {
     code: 'USDC',
     name: 'USD Coin',
     symbol: 'USDC',
     type: 'crypto',
-    rate: 1
-  },
-  {
-    code: 'USDT',
-    name: 'Tether',
-    symbol: 'USDT',
-    type: 'crypto',
+    iconUrl: '/cryptoCurrencies/USDC.svg',  
     rate: 1
   },
   {
     code: 'DAI',
-    name: 'Dai Stablecoin',
+    name: 'DAI',
     symbol: 'DAI',
     type: 'crypto',
+    iconUrl: '/cryptoCurrencies/DAI.svg',
     rate: 1
   },
   {
@@ -27,20 +30,7 @@ export const cryptoCurrencies: Currency[] = [
     name: 'Binance USD',
     symbol: 'BUSD',
     type: 'crypto',
+    iconUrl: '/cryptoCurrencies/BUSD.svg',
     rate: 1
-  },
-  {
-    code: 'ETH',
-    name: 'Ethereum',
-    symbol: 'ETH',
-    type: 'crypto',
-    rate: 0.00037
-  },
-  {
-    code: 'BTC',
-    name: 'Bitcoin',
-    symbol: 'BTC',
-    type: 'crypto',
-    rate: 0.000023
   }
 ]; 
