@@ -11,7 +11,9 @@ interface CurrencyInputProps {
   currencies: Currency[];
 }
 
-export function CurrencyInput({
+export const CurrencyInput: React.FC<
+  CurrencyInputProps
+> = ({
   label,
   selectedCurrency,
   onCurrencySelect,
@@ -19,7 +21,7 @@ export function CurrencyInput({
   onAmountChange,
   type,
   currencies
-}: CurrencyInputProps) {
+}) => {
   return (
     <div className="bg-[#141414] rounded-[28px] p-4 border-4 border-white/5 w-full">
       <div className={`${type === 'from' ? 'flex justify-start' : 'flex justify-end'} mb-2`}>

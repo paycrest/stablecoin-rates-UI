@@ -3,7 +3,11 @@ import { Search, ChevronDown, Check } from 'lucide-react';
 import { Currency } from '../../types/currency';
 import { GB, US, EU, MK, MM, AL, AR, AU } from 'country-flag-icons/react/3x2';
 
-const FlagIcon = ({ code }: { code: string }) => {
+const FlagIcon: React.FC<{
+  code: string
+}> = ({
+  code
+}) => {
   const flagComponents: Record<string, React.ComponentType<{ className?: string }>> = {
     'USD': US,
     'GBP': GB,
@@ -29,12 +33,14 @@ interface CurrencySelectProps {
   type?: 'from' | 'to';
 }
 
-export function CurrencySelect({ 
-  currencies, 
-  selectedCurrency, 
+const CurrencySelect: React.FC<
+  CurrencySelectProps
+> = ({
+  currencies,
+  selectedCurrency,
   onSelect,
   type = 'from'
-}: CurrencySelectProps) {
+}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState('');
   
@@ -119,4 +125,6 @@ export function CurrencySelect({
         )}
       </div>
     );
-}
+};
+
+export { CurrencySelect };

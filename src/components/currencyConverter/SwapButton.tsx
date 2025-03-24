@@ -4,7 +4,11 @@ interface SwapButtonProps {
   onClick: () => void;
 }
 
-export function SwapButton({ onClick }: SwapButtonProps) {
+export const SwapButton: React.FC<
+  SwapButtonProps
+> = ({
+  onClick
+}) => {
     return (
         <div className="flex justify-center -my-1">
           <button
