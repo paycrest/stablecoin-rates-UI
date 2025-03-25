@@ -1,6 +1,5 @@
 import React from "react";
 import heroLogo from "../assets/paycrest.svg";
-import SwapComponent from "./SwapComponent";
 
 const HeroPage: React.FC = () => {
   return (
@@ -11,14 +10,13 @@ const HeroPage: React.FC = () => {
 
       <div className="text-[#e7dddd] text-3xl mt-[50px] leading-12">
         <h1>
-          Your only <span className=" text-white italic">Stablecoin</span>
+          Your only <span className=" text-white font-crimson">Stablecoin</span>
         </h1>
         <p>
-          rate converter to <span className=" text-white italic">any fiat</span>{" "}
+          rate converter to{" "}
+          <span className=" text-white font-crimson">any fiat</span>{" "}
         </p>
       </div>
-
-      <SwapComponent />
     </div>
   );
 };
