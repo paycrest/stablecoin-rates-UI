@@ -14,6 +14,7 @@ html {
 @import "tailwindcss";
 
 @theme {
-  --color-background: #141414;
-  --color-white-dull: #ffffff80;
+  --color-background: #141414; 
+  --color-white-dull: #FFFFFF80;
+  --color-footer-text: #444444;
 }
