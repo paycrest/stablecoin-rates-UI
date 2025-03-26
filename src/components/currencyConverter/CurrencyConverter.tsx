@@ -36,15 +36,7 @@ const CurrencyConverter = () => {
 
     return (
         <>
-        <div className="flex flex-col items-center justify-center gap-2 mb-10">
-            <p className="text-white/50 text-[24px]">
-                Your only <span className="text-white italic">Stablecoin</span>
-            </p>
-            <p className="text-white/50 text-[24px]">
-                rate converter to <span className="text-white italic">any fiat</span>
-            </p>
-        </div>
-        <div className="flex items-center bg-[#191B1F] text-white p-4 max-w-[571px] mx-auto rounded-[28px] gap-3">
+        <div className="flex items-center bg-[#191B1F] text-white p-4 max-w-[571px] mx-auto rounded-[28px] gap-3 mt-10">
             <CurrencyInput
                 label="from"
                 selectedCurrency={fromCurrency}

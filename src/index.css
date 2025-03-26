@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200..900&display=swap');
+
 html {
   font-size: 62.5%;
   @media screen and (max-width: 1300px) {
@@ -11,21 +13,22 @@ html {
   --color-background: #141414; 
   --color-white-dull: #FFFFFF80;
   --color-footer-text: #444444;
+  --color-hero-text: #e7dddd;
 }
 
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1f2937;
-  border-radius: 4px;
+  background: #FFFFFF0D;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4b5563;
-  border-radius: 4px;
+  background: #FFFFFF4D;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -41,4 +44,10 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.font-crimson {
+  font-family: "Crimson Pro", serif;
+  font-optical-sizing: auto;
+  font-style: italic;
 }
