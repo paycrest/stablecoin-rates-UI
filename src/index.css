@@ -1,8 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro");
-
-.font-crimson {
-  font-family: "Crimson Pro", serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200..900&display=swap');
 
 html {
   font-size: 62.5%;
@@ -17,4 +13,11 @@ html {
   --color-background: #141414; 
   --color-white-dull: #FFFFFF80;
   --color-footer-text: #444444;
+  --color-hero-text: #e7dddd;
+}
+
+.font-crimson {
+  font-family: "Crimson Pro", serif;
+  font-optical-sizing: auto;
+  font-style: italic;
 }
