@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro");
+
+.font-crimson {
+  font-family: "Crimson Pro", serif;
+}
+
 html {
   font-size: 62.5%;
   @media screen and (max-width: 1300px) {
@@ -12,4 +18,3 @@ html {
   --color-white-dull: #FFFFFF80;
   --color-footer-text: #444444;
 }
-
