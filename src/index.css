@@ -10,6 +10,7 @@ html {
 @theme {
   --color-background: #141414; 
   --color-white-dull: #FFFFFF80;
+  --color-footer-text: #444444;
 }
 
 /* Custom scrollbar styles */
