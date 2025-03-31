@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import CurrencyConverter from "./components/currencyConverter/CurrencyConverter";
+import CurrencyConverter from "./layout/currencyConverter/CurrencyConverter";
 import HeroSection from "./layout/HeroSection";
 
 function App() {
