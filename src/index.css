@@ -16,6 +16,36 @@ html {
   --color-hero-text: #e7dddd;
 }
 
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFFFF0D;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFFFFF4D;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Remove number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .font-crimson {
   font-family: "Crimson Pro", serif;
   font-optical-sizing: auto;

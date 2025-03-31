@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/styled": "^11.14.0",
     "@tailwindcss/vite": "^4.0.14",
+    "@types/country-flag-icons": "^1.2.2",
+    "country-flag-icons": "^1.5.18",
     "clsx": "^2.1.1",
     "lucide-react": "^0.483.0",
     "react": "^19.0.0",
