@@ -1,6 +1,6 @@
-import { useCurrencyConverter } from '../../hooks/useCurrencyConverter';
-import { cryptoCurrencies } from '../../data/cryptoCurrencies';
-import { fiatCurrencies } from '../../data/fiatCurrencies';
+import { useCurrencyConverter } from '@/hooks/useCurrencyConverter';
+import { cryptoCurrencies } from '@/data/cryptoCurrencies';
+import { fiatCurrencies } from '@/data/fiatCurrencies';
 import { CurrencyInput } from './CurrencyInput';
 import { SwapButton } from './SwapButton';
 import { useState } from 'react';

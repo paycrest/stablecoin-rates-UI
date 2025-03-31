@@ -1,4 +1,4 @@
-import { Currency } from '../../types/currency';
+import { Currency } from '@/types/currency';
 import { CurrencySelect } from './CurrencySelect';
 
 interface CurrencyInputProps {

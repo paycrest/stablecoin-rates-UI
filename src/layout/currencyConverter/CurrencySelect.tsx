@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Search, ChevronDown, Check } from 'lucide-react';
-import { Currency } from '../../types/currency';
+import { Currency } from '@/types/currency';
 import { GB, US, EU, MK, MM, AL, AR, AU } from 'country-flag-icons/react/3x2';
 
 const FlagIcon: React.FC<{
