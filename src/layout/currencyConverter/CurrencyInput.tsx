@@ -1,6 +1,6 @@
 import { Currency } from '@/types/currency';
 import { CurrencySelect } from './CurrencySelect';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface CurrencyInputProps {
   label: string;
@@ -25,10 +25,13 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   isActive,
   setActive,
 }: CurrencyInputProps) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [hasTyped, setHasTyped] = useState(false);
 
   useEffect(() => {
     if (!amount) {
       setActive(false);
+      setHasTyped(false);
     }
   }, [amount, setActive]);
 
@@ -36,7 +39,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
     <div
       className={`
         rounded-[24px] p-[5px] 
-        ${isActive ? "bg-gradient-to-br from-[#5c462e]  to-[#402d50]" : "bg-zinc-800"}
+        ${(isActive || isFocused) ? "bg-gradient-to-br from-[#5c462e] to-[#402d50]" : "bg-zinc-800"}
         transition-all duration-300
       `}
     >
@@ -56,9 +59,13 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
             value={amount}
             onChange={(e) => {
               onAmountChange(e.target.value);
+              setHasTyped(true);
               setActive(true);
             }}
-            onFocus={() => setActive(true)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => {
+              if (!hasTyped) setIsFocused(false);
+            }}
             placeholder="0"
             className={`bg-transparent w-full focus:outline-none placeholder-white/50 text-[20px] ${type === 'from' ? 'text-right' : 'text-left'}`}
             min="0"
