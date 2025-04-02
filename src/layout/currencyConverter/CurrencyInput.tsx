@@ -63,9 +63,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
               setActive(true);
             }}
             onFocus={() => setIsFocused(true)}
-            onBlur={() => {
-              if (!hasTyped) setIsFocused(false);
-            }}
+            onBlur={() => !hasTyped && setIsFocused(false)}
             placeholder="0"
             className={`bg-transparent w-full focus:outline-none placeholder-white/50 text-[20px] ${type === 'from' ? 'text-right' : 'text-left'}`}
             min="0"
