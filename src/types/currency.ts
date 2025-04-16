@@ -6,4 +6,5 @@ export interface Currency {
   countryCode?: string;  // ISO country code for flag icons
   iconUrl?: string;     // URL for crypto currency icons
   rate: number; // Rate relative to USD
-} 
+  flag?: string;
+}

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200..900&display=swap");
 
 html {
   font-size: 62.5%;
@@ -10,8 +10,8 @@ html {
 @import "tailwindcss";
 
 @theme {
-  --color-background: #141414; 
-  --color-white-dull: #FFFFFF80;
+  --color-background: #141414;
+  --color-white-dull: #ffffff80;
   --color-footer-text: #444444;
   --color-hero-text: #e7dddd;
 }
@@ -22,12 +22,12 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFFFFF0D;
+  background: #ffffff0d;
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FFFFFF4D;
+  background: #ffffff4d;
   border-radius: 2px;
 }
 
