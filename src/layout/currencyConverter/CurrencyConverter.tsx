@@ -75,7 +75,7 @@ const CurrencyConverter = () => {
             </div>
             <div className="mt-4 text-center text-xl text-white/50">
                 {formatAmount(fromAmount)} {fromCurrency.code} = {formatAmount(toAmount)} {toCurrency.code}
-                <img src={Hline} alt="Hline" className="w-2 h-52 mx-auto" />
+                <img src={Hline} alt="Hline" className="w-2 h-52 lg:h-52 xl:h-60 md:h-60 mx-auto" />
                 <p className="text-center text-lg text-white/50 mb-2">Aggregated from</p>
                 <div className='mx-auto'>
                     <Exchange />

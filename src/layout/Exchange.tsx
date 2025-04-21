@@ -1,16 +1,17 @@
 import ExchangeLogo from "../components/ExchangeLogo";
 import { exchanges } from "../data/exchanges";
 import { useState } from 'react';
+import Curveline from "../assets/exchanges/curveline.svg";
 
 const Exchange = () => {
   const [isHoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [tappedIndex, setTappedIndex] = useState<number | null>(null);
 
   const calculateCurveOffset = (index: number, total: number) => {
-    const position = (index - (total - 1) / 2) / ((total - 1) / 2); // Normalize position to [-1, 1]
-    const amplitude = -20; // Controls the depth of the curve
-    return amplitude * position * position; // Parabolic equation: y = a * x^2
+    const position = (index - (total - 1) / 2) / ((total - 1) / 2);
+    const amplitude = -10;
+    return amplitude * position * position;
   };
-
 
   // Calculate total width of the logos container
   const logoWidth = 40;
@@ -51,32 +52,38 @@ const Exchange = () => {
               index={index}
               isHoveredIndex={isHoveredIndex}
               setHoveredIndex={setHoveredIndex}
+              tappedIndex={tappedIndex}
+              setTappedIndex={setTappedIndex}
             />
           );
         })}
+        <img
+          src={Curveline} alt="hline"
+          className="absolute 2xl:-top-[540px] xl:-top-[480px] lg:-top-[380px] md:-top-[300px] -top-[150px] hidden md:block z-0 top-element"
+        />
       </div>
-        {/* Dynamic SVG Dashed Line */}
-        <svg
-            className="absolute -top-10 min-h-48 stroke-white/50 z-0"
-            width={totalWidth}
-            style={{ transform: 'translateX(-50%)', left: '50%' }}
-        >
-            <path
-                d={pathD}
-                className="stroke-white/50"
-                fill="none"
-                strokeWidth="2"
-                strokeDasharray="5,5"
-            >
-                <animate
-                    attributeName="stroke-dashoffset"
-                    from="0"
-                    to="-20"
-                    dur="2s"
-                    repeatCount="indefinite"
-                />
-            </path>
-        </svg>
+      {/* Dynamic SVG Dashed Line */}
+      <svg
+          className="absolute -top-10 min-h-48 stroke-white/50 z-0 block md:hidden"
+          width={totalWidth}
+          style={{ transform: 'translateX(-50%)', left: '50%' }}
+      >
+          <path
+              d={pathD}
+              className="stroke-white/50"
+              fill="none"
+              strokeWidth="2"
+              strokeDasharray="5,5"
+          >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-20"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+          </path>
+      </svg>
     </div>
   );
 };
