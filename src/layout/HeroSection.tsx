@@ -1,6 +1,7 @@
 import React from "react";
 import heroLogo from "@/assets/paycrest.svg";
 import clsx from "clsx"
+
 interface HeroSectionProps {
   className?: string
 }

@@ -1,9 +1,9 @@
-import ExchangeLogo from "../components/ExchangeLogo";
-import { exchanges } from "../data/exchanges";
+import ExchangeLogo from "./ExchangeLogo";
+import { exchanges } from "@/data/exchanges";
 import { useState } from 'react';
-import Curveline from "../assets/exchanges/curveline.svg";
+import Curveline from "@/assets/exchanges/curveline.svg";
 
-const Exchange = () => {
+const ExchangeView = () => {
   const [isHoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [tappedIndex, setTappedIndex] = useState<number | null>(null);
 
@@ -88,4 +88,4 @@ const Exchange = () => {
   );
 };
 
-export default Exchange;
+export default ExchangeView;
