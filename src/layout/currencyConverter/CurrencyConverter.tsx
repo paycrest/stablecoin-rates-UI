@@ -5,7 +5,7 @@ import { CurrencyInput } from './CurrencyInput';
 import { SwapButton } from './SwapButton';
 import { useState } from 'react';
 import Hline from "@/assets/hline.svg";
-import ExchangeView from '../exchanges/ExchangeView';
+import { formatAmount } from '@/utils';
 
 const CurrencyConverter = () => {
     const {
@@ -37,10 +37,7 @@ const CurrencyConverter = () => {
         handleSwap();
     };
 
-    // Format the amount to handle large numbers with commas
-    const formatAmount = (amount: string) => {
-        return Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    };
+    
 
     return (
         <div>
