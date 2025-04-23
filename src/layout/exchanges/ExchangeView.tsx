@@ -2,8 +2,9 @@ import ExchangeLogo from "./ExchangeLogo";
 import { exchanges } from "@/data/exchanges";
 import { useState } from 'react';
 import Curveline from "@/assets/exchanges/curveline.svg";
+import { Exchange } from "@/types";
 
-const ExchangeView = () => {
+const ExchangeView: React.FC<{}> = () => {
   const [isHoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [tappedIndex, setTappedIndex] = useState<number | null>(null);
 
@@ -40,7 +41,7 @@ const ExchangeView = () => {
   return (
     <div className="relative flex justify-center">
       <div className="flex justify-center items-end -space-x-2 sm:-space-x-3 md:-space-x-4 z-50">
-        {exchanges.map((exchange, index) => {
+        {exchanges.map((exchange: Exchange, index: number) => {
           const curveOffset = calculateCurveOffset(index, exchanges.length);
           return (
             <ExchangeLogo

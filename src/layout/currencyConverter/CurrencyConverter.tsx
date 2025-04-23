@@ -5,7 +5,7 @@ import { CurrencyInput } from './CurrencyInput';
 import { SwapButton } from './SwapButton';
 import { useState } from 'react';
 import Hline from "@/assets/hline.svg";
-import ExchangeList from '../exchanges/ExchangeView';
+import ExchangeView from '../exchanges/ExchangeView';
 
 const CurrencyConverter = () => {
     const {
@@ -78,7 +78,7 @@ const CurrencyConverter = () => {
                 <img src={Hline} alt="Hline" className="w-2 h-52 lg:h-52 xl:h-60 md:h-60 mx-auto" />
                 <p className="text-center text-lg text-white/50 mb-2">Aggregated from</p>
                 <div className='mx-auto'>
-                    <ExchangeList />
+                    <ExchangeView />
                 </div>
             </div>
         </div>
