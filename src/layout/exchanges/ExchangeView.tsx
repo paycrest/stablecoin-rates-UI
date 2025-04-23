@@ -60,7 +60,7 @@ const ExchangeView: React.FC<{}> = () => {
         })}
         <img
           src={Curveline} alt="hline"
-          className="absolute 2xl:-top-[540px] xl:-top-[480px] lg:-top-[380px] md:-top-[300px] -top-[150px] hidden md:block z-0 top-element"
+          className="absolute 2xl:-top-[54rem] xl:-top-[48rem] lg:-top-[38rem] md:-top-[30rem] -top-[15rem] hidden md:block z-0 top-element"
         />
       </div>
       {/* Dynamic SVG Dashed Line */}

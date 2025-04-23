@@ -44,7 +44,7 @@ const CurrencyConverter = () => {
 
     return (
         <div>
-            <div className="flex items-center bg-[#191B1F] text-white p-4 max-w-[571px] mx-auto rounded-[28px] gap-3 mt-10">
+            <div className="md:flex items-center bg-[#191B1F] text-white p-4 max-w-[57.1rem] rounded-[2.8rem] gap-3 mx-7 mt-10 md:mx-auto">
                 <CurrencyInput
                     label="from"
                     selectedCurrency={fromCurrency}
@@ -76,10 +76,10 @@ const CurrencyConverter = () => {
             <div className="mt-4 text-center text-xl text-white/50">
                 {formatAmount(fromAmount)} {fromCurrency.code} = {formatAmount(toAmount)} {toCurrency.code}
                 <img src={Hline} alt="Hline" className="w-2 h-52 lg:h-52 xl:h-60 md:h-60 mx-auto" />
-                <p className="text-center text-lg text-white/50 mb-2">Aggregated from</p>
-                <div className='mx-auto'>
+                {/* <p className="text-center text-lg text-white/50 mb-2">Aggregated from</p> */}
+                {/* <div className='mx-auto'>
                     <ExchangeView />
-                </div>
+                </div> */}
             </div>
         </div>
     );

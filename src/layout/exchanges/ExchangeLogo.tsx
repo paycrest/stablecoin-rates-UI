@@ -78,7 +78,7 @@ const ExchangeLogo = ({
       tabIndex={0}
       aria-label={`View ${exchangeName} logo`}
     >
-      <div className={`relative flex items-center justify-center bg-background w-[35px] h-[35px] rounded-full ${isActive ? 'border-2 border-white/10' : ''}`}>
+      <div className={`relative flex items-center justify-center bg-background w-[3.5rem] h-[3.5rem] rounded-full ${isActive ? 'border-2 border-white/10' : ''}`}>
         {isActive && (
           <svg
             width="39"
@@ -99,7 +99,7 @@ const ExchangeLogo = ({
         <img
           src={src}
           alt={alt}
-          className={`object-contain w-[29px] h-[29px] rounded-full transition-all duration-300 relative z-50 ${
+          className={`object-contain w-[2.9rem] h-[2.9rem] rounded-full transition-all duration-300 relative z-50 ${
             isActive
               ? 'scale-110 filter-none border-2 border-black'
               : 'scale-100 blur-xs'

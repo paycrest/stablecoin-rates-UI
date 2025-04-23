@@ -38,16 +38,16 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   return (
     <div
       className={`
-        rounded-[24px] p-[5px] 
+        rounded-[2.4rem] p-[.5rem] 
         ${(isActive || isFocused) ? "bg-gradient-to-br from-[#5c462e] to-[#402d50]" : "bg-zinc-800"}
         transition-all duration-300
       `}
     >
-      <div className="bg-[#141414] rounded-[19px] p-4 border border-white/5">
-        <div className={`${type === 'from' ? 'flex justify-start' : 'flex justify-end'} mb-2`}>
-          <label className="text-[14px] text-white/50">{label}</label>
+      <div className="bg-[#141414] rounded-[1.9rem] p-4 border border-white/5">
+        <div className={`${type === 'from' ? 'flex md:justify-start justify-end' : 'flex justify-end md:justify-start'} mb-2`}>
+          <label className="text-[1.4rem] text-white/50">{label}</label>
         </div>
-        <div className={`flex justify-between gap-4 ${type === 'from' ? 'flex-row' : 'flex-row-reverse'}`}>
+        <div className={`flex justify-between gap-4 ${type === 'from' ? 'md:flex-row flex-row-reverse' : 'flex-row-reverse'}`}>
           <CurrencySelect
             currencies={currencies}
             selectedCurrency={selectedCurrency}
@@ -65,7 +65,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
             onFocus={() => setIsFocused(true)}
             onBlur={() => !hasTyped && setIsFocused(false)}
             placeholder="0"
-            className={`bg-transparent w-full focus:outline-none placeholder-white/50 text-[20px] ${type === 'from' ? 'text-right' : 'text-left'}`}
+            className={`bg-transparent w-full focus:outline-none placeholder-white/50 text-[2rem] ${type === 'from' ? 'md:text-right text-left' : 'text-left'}`}
             min="0"
             step="any"
           />
