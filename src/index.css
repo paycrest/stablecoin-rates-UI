@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200..900&display=swap");
 
 html {
   font-size: 62.5%;
@@ -10,8 +10,8 @@ html {
 @import "tailwindcss";
 
 @theme {
-  --color-background: #141414; 
-  --color-white-dull: #FFFFFF80;
+  --color-background: #141414;
+  --color-white-dull: #ffffff80;
   --color-footer-text: #444444;
   --color-hero-text: #e7dddd;
 }
@@ -22,12 +22,12 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFFFFF0D;
+  background: #ffffff0d;
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FFFFFF4D;
+  background: #ffffff4d;
   border-radius: 2px;
 }
 
@@ -50,4 +50,30 @@ input[type="number"] {
   font-family: "Crimson Pro", serif;
   font-optical-sizing: auto;
   font-style: italic;
+}
+
+@media (width = 48rem /* 768px */) {
+  .top-element {
+    position: absolute;
+    top: calc(280px * -1) /* -280px */;
+  }
+}
+@media (width = 912px) {
+  .top-element {
+    position: absolute;
+    top: calc(330px * -1) /* -330px */;
+  }
+}
+@media (width = 540px) {
+  .top-element {
+    position: absolute;
+    top: calc(190px * -1) /* -190px */;
+  }
+}
+
+@media (width >= 1440px) {
+  .top-element {
+    position: absolute;
+    top: calc(540px * -1); /* -540px */
+  }
 }
