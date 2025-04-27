@@ -1,15 +1,16 @@
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
-import CurrencyConverter from "./layout/currencyConverter/CurrencyConverter";
-import HeroSection from "./layout/HeroSection";
+import Home from "./pages/Home";
+import Developers from "./pages/Developers";
 
 function App() {
   return (
     <div className="bg-background min-h-screen flex flex-col relative pb-32">
       <Header />
-      <HeroSection />
-      <CurrencyConverter/>
-      <Footer />
+      <Routes>
+        <Route element={<Home />} path="/" />
+        <Route element={<Developers />} path="/developers" />
+      </Routes>
     </div>
   );
 }
