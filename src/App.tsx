@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
 import Home from "./pages/Home";
 import Developers from "./pages/Developers";
 
@@ -11,6 +10,7 @@ function App() {
         <Route element={<Home />} path="/" />
         <Route element={<Developers />} path="/developers" />
       </Routes>
+
     </div>
   );
 }
