@@ -1,6 +1,6 @@
 import ExchangeLogo from "./ExchangeLogo";
 import { exchanges } from "@/data/exchanges";
-import { useState } from 'react';
+import { useState } from "react";
 import Curveline from "@/assets/exchanges/curveline.svg";
 import { Exchange } from "@/types";
 
@@ -36,7 +36,7 @@ const ExchangeView: React.FC<{}> = () => {
       if (index === 0) return `M ${point.x} ${point.y}`;
       return `L ${point.x} ${point.y}`;
     })
-    .join(' ');
+    .join(" ");
 
   return (
     <div className="relative flex justify-center">
@@ -59,12 +59,13 @@ const ExchangeView: React.FC<{}> = () => {
           );
         })}
         <img
-          src={Curveline} alt="hline"
+          src={Curveline}
+          alt="hline"
           className="absolute 2xl:-top-[54rem] xl:-top-[48rem] lg:-top-[38rem] md:-top-[30rem] -top-[15rem] hidden md:block z-0 top-element"
         />
       </div>
       {/* Dynamic SVG Dashed Line */}
-      <svg
+      {/* <svg
           className="absolute -top-10 min-h-48 stroke-white/50 z-0 block md:hidden"
           width={totalWidth}
           style={{ transform: 'translateX(-50%)', left: '50%' }}
@@ -84,7 +85,7 @@ const ExchangeView: React.FC<{}> = () => {
                 repeatCount="indefinite"
               />
           </path>
-      </svg>
+      </svg> */}
     </div>
   );
 };

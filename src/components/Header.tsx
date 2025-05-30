@@ -15,14 +15,14 @@ const Header: React.FC = () => {
         />
       </Link>
 
-      <Link
+      {/* <Link
         to="developers"
         className={` ${
           pathname.includes("developers") ? "text-white" : "text-white-dull"
         } text-[1.6rem] font-medium text-base hover:text-white active:text-white transition duration-200 ease-in-out`}
       >
         For Developers
-      </Link>
+      </Link> */}
     </header>
   );
 };
