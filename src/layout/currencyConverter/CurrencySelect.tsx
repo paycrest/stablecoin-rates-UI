@@ -1,31 +1,29 @@
 import { useState, useRef, useEffect } from "react";
 import { Search, ChevronDown, Check } from "lucide-react";
 import { Currency } from "@/types/currency";
-import { GB, US, EU, MK, MM, AL, AR, AU } from "country-flag-icons/react/3x2";
 
-const FlagIcon: React.FC<{
-  code: string;
-}> = ({ code }) => {
-  const flagComponents: Record<
-    string,
-    React.ComponentType<{ className?: string }>
-  > = {
-    USD: US,
-    GBP: GB,
-    EUR: EU,
-    MKD: MK,
-    MMK: MM,
-    ALL: AL,
-    ARS: AR,
-    AUD: AU,
-  };
+function countryCodeToFlag(nationalCode: string) {
+  if (typeof nationalCode !== "string") return "🏳️";
+  const countryCode = nationalCode.trim().toLowerCase();
 
-  const IconComponent = flagComponents[code];
-  if (IconComponent) {
-    return <IconComponent className="w-10 h-10 !rounded-[50%]" />;
+  if (
+    !countryCode ||
+    countryCode.length !== 2 ||
+    !/^[a-zA-Z]+$/.test(countryCode)
+  ) {
+    return "🏳️";
   }
-  return null;
-};
+
+  const code = countryCode.toUpperCase();
+
+  const offset = 127397;
+
+  const flag = Array.from(code)
+    .map((letter) => String.fromCodePoint(letter.charCodeAt(0) + offset))
+    .join("");
+
+  return flag;
+}
 
 interface CurrencySelectProps {
   currencies: Currency[];
@@ -77,7 +75,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
       >
         {selectedCurrency.type === "fiat" ? (
           <div className="flex items-center justify-center w-6 h-6 rounded-full">
-            <FlagIcon code={selectedCurrency.code} />
+            <>{countryCodeToFlag(selectedCurrency.symbol)}</>
           </div>
         ) : (
           <img
@@ -121,7 +119,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
                 }}
               >
                 {currency.type === "fiat" ? (
-                  <FlagIcon code={currency.code} />
+                  <>{countryCodeToFlag(currency.symbol)}</>
                 ) : (
                   <img
                     src={currency.iconUrl}

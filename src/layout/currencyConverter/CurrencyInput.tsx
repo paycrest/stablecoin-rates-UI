@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Currency } from '@/types/currency';
-import { CurrencySelect } from './CurrencySelect';
-
-
+import { useEffect, useState } from "react";
+import { Currency } from "@/types/currency";
+import { CurrencySelect } from "./CurrencySelect";
+import { useCurrencyRates } from "@/hooks/useCurrencyRates";
 
 interface CurrencyInputProps {
   label: string;
@@ -10,7 +9,7 @@ interface CurrencyInputProps {
   onCurrencySelect: (currency: Currency) => void;
   amount: string;
   onAmountChange: (value: string) => void;
-  type: 'from' | 'to';
+  type: "from" | "to";
   currencies: Currency[];
   isActive: boolean;
   setActive: (active: boolean) => void;
@@ -29,6 +28,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 }: CurrencyInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [hasTyped, setHasTyped] = useState(false);
+  const { refreshRates } = useCurrencyRates();
 
   useEffect(() => {
     if (!amount) {
@@ -37,19 +37,41 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
     }
   }, [amount, setActive]);
 
+  useEffect(() => {
+    if (label === "from" && selectedCurrency.type === "crypto") {
+      refreshRates(selectedCurrency.code.toLowerCase());
+    }
+  }, [label, selectedCurrency]);
+
   return (
     <div
       className={`
         rounded-[2.4rem] p-[.5rem] 
-        ${(isActive || isFocused) ? "bg-gradient-to-br from-[#5c462e] to-[#402d50]" : "bg-zinc-800"}
+        ${
+          isActive || isFocused
+            ? "bg-gradient-to-br from-[#5c462e] to-[#402d50]"
+            : "bg-zinc-800"
+        }
         transition-all duration-300
       `}
     >
       <div className="bg-[#141414] rounded-[1.9rem] p-4 border border-white/5">
-        <div className={`${type === 'from' ? 'flex md:justify-start justify-end' : 'flex justify-end md:justify-start'} mb-2`}>
+        <div
+          className={`${
+            type === "from"
+              ? "flex md:justify-start justify-end"
+              : "flex justify-end md:justify-start"
+          } mb-2`}
+        >
           <label className="text-[1.4rem] text-white/50">{label}</label>
         </div>
-        <div className={`flex justify-between gap-4 ${type === 'from' ? 'md:flex-row flex-row-reverse' : 'flex-row-reverse'}`}>
+        <div
+          className={`flex justify-between gap-4 ${
+            type === "from"
+              ? "md:flex-row flex-row-reverse"
+              : "flex-row-reverse"
+          }`}
+        >
           <CurrencySelect
             currencies={currencies}
             selectedCurrency={selectedCurrency}
@@ -67,7 +89,9 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
             onFocus={() => setIsFocused(true)}
             onBlur={() => !hasTyped && setIsFocused(false)}
             placeholder="0"
-            className={`bg-transparent w-full focus:outline-none placeholder-white/50 text-[2rem] ${type === 'from' ? 'md:text-right text-left' : 'text-left'}`}
+            className={`bg-transparent w-full focus:outline-none placeholder-white/50 text-[2rem] ${
+              type === "from" ? "md:text-right text-left" : "text-left"
+            }`}
             min="0"
             step="any"
           />

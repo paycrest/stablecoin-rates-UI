@@ -1,14 +1,18 @@
 import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
-import { cryptoCurrencies } from "@/data/cryptoCurrencies";
-import { fiatCurrencies } from "@/data/fiatCurrencies";
+import { useCurrencyRates } from "@/hooks/useCurrencyRates";
 import { CurrencyInput } from "./CurrencyInput";
 import { SwapButton } from "./SwapButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fiatCurrencies } from "@/data/fiatCurrencies";
+import { cryptoCurrencies } from "../../data/cryptoCurrencies";
 import Hline from "@/assets/hline.svg";
 import { formatAmount } from "@/utils";
 import ExchangeView from "../exchanges/ExchangeView";
 
-const CurrencyConverter = () => {
+interface CurrencyConverterProps {}
+const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
+  const { fiatCurrencies, cryptoCurrencies } = useCurrencyRates();
+
   const {
     fromCurrency,
     toCurrency,
@@ -21,29 +25,29 @@ const CurrencyConverter = () => {
     handleSwap,
   } = useCurrencyConverter(
     cryptoCurrencies.find((c) => c.code === "USDC") || cryptoCurrencies[0],
-    fiatCurrencies.find((c) => c.code === "USD") || fiatCurrencies[0]
+    fiatCurrencies.find((c) => c.code === "HUF") || fiatCurrencies[0]
   );
 
-  // Mantener un estado local para las listas de monedas
   const [fromList, setFromList] = useState(cryptoCurrencies);
   const [toList, setToList] = useState(fiatCurrencies);
   const [isActive, setIsActive] = useState(false);
 
-  // Función personalizada para manejar el swap
   const handleSwapWithLists = () => {
-    // Intercambiar las listas
     setFromList(toList);
     setToList(fromList);
-    // Llamar al swap original
     handleSwap();
   };
 
+  if (fiatCurrencies.length === 0 || cryptoCurrencies.length === 0) return null;
+
+  useEffect(() => {
+    setFromList(cryptoCurrencies);
+    setToList(fiatCurrencies);
+  }, [fiatCurrencies, cryptoCurrencies]);
+
   return (
     <div>
-      <div
-        className="md:flex items-center bg-[#191B1F] text-white p-4 max-w-[57.1rem] rounded-[2.8rem] gap-3 mx-7 mt-10 md:mx-auto relative z-140
-            "
-      >
+      <div className="md:flex items-center bg-[#191B1F] text-white p-4 max-w-[57.1rem] rounded-[2.8rem] gap-3 mx-7 mt-10 md:mx-auto relative z-140">
         <CurrencyInput
           label="from"
           selectedCurrency={fromCurrency}
@@ -74,7 +78,7 @@ const CurrencyConverter = () => {
       </div>
       <div className="mt-4 text-center text-xl text-white/50">
         {formatAmount(fromAmount)} {fromCurrency.code} ={" "}
-        {formatAmount(toAmount)} {toCurrency.code}
+        {formatAmount(toAmount)} {toCurrency.code ?? fiatCurrencies[0].code}
         <img
           src={Hline}
           alt="Hline"
