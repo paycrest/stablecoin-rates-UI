@@ -1,9 +1,10 @@
 export interface EndpointInteractionProps {
   title: string;
   description: string;
-  endPoint: string;
+  endpoint: string;
   method: string;
   example: string;
   successData: Object;
   errorData: Object;
+  params: Record<string, string>;
 }

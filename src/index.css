@@ -10,11 +10,16 @@ html {
 
 @import "tailwindcss";
 
+.spinner {
+  height: 1.5rem;
+}
+
 @theme {
   --color-background: #141414;
   --color-white-dull: #ffffff80;
   --color-footer-text: #444444;
   --color-hero-text: #e7dddd;
+  --color-button: #8B85F4;
 }
 
 /* Custom scrollbar styles */

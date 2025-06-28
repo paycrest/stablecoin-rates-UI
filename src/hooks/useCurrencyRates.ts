@@ -1,27 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { api } from "@/utils/axios";
 import { cryptoCurrencies } from "@/data/cryptoCurrencies";
 import currenciesCodes from "@/data/currenciesCodes";
 
 export const useCurrencyRates = () => {
-  const [rates, setRates] = useState<any[]>([
+  const rates = useRef<any[]>([
     {
-      code: "USD",
-      name: "US Dollar",
-      symbol: "US",
+      code: "INR",
+      name: "Indian Rupee",
+      rate: 99.29,
+      symbol: "IN",
       type: "fiat",
-      rate: 1,
     },
   ]);
   const [fiatCodes, setFiatCodes] = useState<{}>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchRates = async (stablecoin: string = "usdt") => {
+  const fetchRates = async (stablecoin: string, rateType = "sellRate") => {
     try {
       setLoading(true);
       const res = await api.get(`/rates/${stablecoin}`);
-      setRates(res.data);
 
       let data = res.data;
 
@@ -34,12 +33,10 @@ export const useCurrencyRates = () => {
           code: item.fiat,
           name: currency.currency_name,
           type: "fiat",
-          rate: item.sellRate,
+          rate: rateType == "sellRate" ? item.sellRate : item.buyRate,
           symbol: currency.country_code,
         };
       });
-
-      setRates(fiatRates);
 
       const codes = fiatRates.reduce((acc, item) => {
         const country = currenciesCodes.find(
@@ -49,6 +46,8 @@ export const useCurrencyRates = () => {
       }, {});
 
       setFiatCodes(codes);
+      rates.current = fiatRates;
+      return fiatRates;
     } catch (err) {
       console.log(err);
 
@@ -59,7 +58,7 @@ export const useCurrencyRates = () => {
   };
 
   useEffect(() => {
-    fetchRates();
+    // fetchRates('usdc');
   }, []);
 
   return {
@@ -67,7 +66,7 @@ export const useCurrencyRates = () => {
     loading,
     error,
     cryptoCurrencies,
-    fiatCurrencies: rates,
+    fiatCurrencies: rates.current,
     fiatCodes,
     refreshRates: fetchRates,
   };

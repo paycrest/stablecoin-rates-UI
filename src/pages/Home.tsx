@@ -1,7 +1,7 @@
 import React from "react";
 
 import Footer from "../components/Footer";
-import CurrencyConverter from "../layout/currencyConverter/CurrencyConverter";
+import { CurrencyConverter } from "../layout/currencyConverter/CurrencyConverter";
 import HeroSection from "../layout/HeroSection";
 const Home = () => {
   return (

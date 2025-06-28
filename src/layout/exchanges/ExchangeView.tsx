@@ -1,7 +1,9 @@
+"use client";
+
 import ExchangeLogo from "./ExchangeLogo";
 import { exchanges } from "@/data/exchanges";
 import { useState } from "react";
-import Curveline from "@/assets/exchanges/curveline.svg";
+import Image from 'next/image';
 import { Exchange } from "@/types";
 
 const ExchangeView: React.FC<{}> = () => {
@@ -58,10 +60,12 @@ const ExchangeView: React.FC<{}> = () => {
             />
           );
         })}
-        <img
-          src={Curveline}
+        <Image
+          src='/exchanges/curveline.svg'
           alt="hline"
           className="absolute 2xl:-top-[54rem] xl:-top-[48rem] lg:-top-[38rem] md:-top-[30rem] -top-[15rem] hidden md:block z-0 top-element"
+          width={11120}
+          height={120}
         />
       </div>
       {/* Dynamic SVG Dashed Line */}

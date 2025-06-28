@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Currency } from "../types/currency";
 
 export function useCurrencyConverter(
@@ -11,6 +11,7 @@ export function useCurrencyConverter(
   const [fromAmount, setFromAmount] = useState<string>("");
   const [toAmount, setToAmount] = useState<string>("");
   const [activeInput, setActiveInput] = useState<"from" | "to">("from");
+  const hasMounted = useRef(false);
 
   const convertCurrency = (
     amount: string,
@@ -65,6 +66,17 @@ export function useCurrencyConverter(
     setFromAmount(toAmount);
     setToAmount(fromAmount);
   };
+
+  useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true; // Skip the first run
+      return;
+    }
+
+   
+    setToCurrency(initialToCurrency);
+    setFromCurrency(initialFromCurrency);
+  }, [initialFromCurrency, initialToCurrency]);
 
   return {
     fromCurrency,

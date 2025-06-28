@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useRef, useEffect } from "react";
 import { Search, ChevronDown, Check } from "lucide-react";
 import { Currency } from "@/types/currency";
@@ -43,6 +45,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setSearch("");
     const handleClickOutside = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
@@ -61,7 +64,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
     };
   }, [isOpen]);
 
-  const filteredCurrencies = currencies.filter(
+  let filteredCurrencies = currencies.filter(
     (currency) =>
       currency.name.toLowerCase().includes(search.toLowerCase()) ||
       currency.code.toLowerCase().includes(search.toLowerCase())
@@ -108,6 +111,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
               />
             </div>
           </div>
+          
           <div className="max-h-[24rem] overflow-y-auto">
             {filteredCurrencies.map((currency) => (
               <button

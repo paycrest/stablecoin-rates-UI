@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { Currency } from "@/types/currency";
 import { CurrencySelect } from "./CurrencySelect";
 import { useCurrencyRates } from "@/hooks/useCurrencyRates";
@@ -13,6 +15,7 @@ interface CurrencyInputProps {
   currencies: Currency[];
   isActive: boolean;
   setActive: (active: boolean) => void;
+  setStablecoin?: (selectedCurrency: Currency, label: string) => void;
 }
 
 export const CurrencyInput: React.FC<CurrencyInputProps> = ({
@@ -25,10 +28,10 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   currencies,
   isActive,
   setActive,
+  setStablecoin,
 }: CurrencyInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [hasTyped, setHasTyped] = useState(false);
-  const { refreshRates } = useCurrencyRates();
 
   useEffect(() => {
     if (!amount) {
@@ -37,11 +40,10 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
     }
   }, [amount, setActive]);
 
-  useEffect(() => {
-    if (label === "from" && selectedCurrency.type === "crypto") {
-      refreshRates(selectedCurrency.code.toLowerCase());
-    }
-  }, [label, selectedCurrency]);
+  const updateCurrency = (currency: Currency) => {
+    setStablecoin?.(currency, label);
+    onCurrencySelect(currency);
+  };
 
   return (
     <div
@@ -75,7 +77,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
           <CurrencySelect
             currencies={currencies}
             selectedCurrency={selectedCurrency}
-            onSelect={onCurrencySelect}
+            onSelect={updateCurrency}
             type={type}
           />
           <input

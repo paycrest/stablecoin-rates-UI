@@ -1,5 +1,5 @@
 import React from "react";
-import heroLogo from "@/assets/paycrest.svg";
+import Image from "next/image";
 import clsx from "clsx"
 
 interface HeroSectionProps {
@@ -9,7 +9,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
   return (
     <div className={clsx(className, "flex my-2 justify-center text-center flex-col items-center")}>
       <div>
-        <img src={heroLogo} alt="hero" className="w-[6rem]" />
+        <Image src='/paycrest.svg' alt="hero" className="w-[6rem]" width={120} height={120} />
       </div>
 
       <div className="text-hero-text text-3xl mt-[5rem] leading-12">

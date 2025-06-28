@@ -1,17 +1,27 @@
+"use client";
+
 import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
 import { useCurrencyRates } from "@/hooks/useCurrencyRates";
 import { CurrencyInput } from "./CurrencyInput";
 import { SwapButton } from "./SwapButton";
-import { useEffect, useState } from "react";
-import { fiatCurrencies } from "@/data/fiatCurrencies";
-import { cryptoCurrencies } from "../../data/cryptoCurrencies";
-import Hline from "@/assets/hline.svg";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { formatAmount } from "@/utils";
 import ExchangeView from "../exchanges/ExchangeView";
+import { Currency } from "../../types/currency";
+import { Loader } from "../../components/Loader";
 
 interface CurrencyConverterProps {}
-const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
-  const { fiatCurrencies, cryptoCurrencies } = useCurrencyRates();
+export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
+  const [loader, setLoader] = useState<boolean>(false);
+  const { fiatCurrencies, cryptoCurrencies, refreshRates } = useCurrencyRates();
+
+  const initialFromCurrency = useRef<Currency>(
+    cryptoCurrencies.find((c) => c.code === "USDC") || cryptoCurrencies[0]
+  );
+  const initialToCurrency = useRef<Currency>(
+    fiatCurrencies.find((c) => c.code === "HUF") || fiatCurrencies[0]
+  );
 
   const {
     fromCurrency,
@@ -24,64 +34,163 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
     handleToAmountChange,
     handleSwap,
   } = useCurrencyConverter(
-    cryptoCurrencies.find((c) => c.code === "USDC") || cryptoCurrencies[0],
-    fiatCurrencies.find((c) => c.code === "HUF") || fiatCurrencies[0]
+    initialFromCurrency.current,
+    initialToCurrency.current
   );
 
   const [fromList, setFromList] = useState(cryptoCurrencies);
   const [toList, setToList] = useState(fiatCurrencies);
   const [isActive, setIsActive] = useState(false);
 
-  const handleSwapWithLists = () => {
-    setFromList(toList);
-    setToList(fromList);
+  const handleSwapWithLists = async () => {
     handleSwap();
+    try {
+      if (toCurrency.type === "crypto") {
+        const rates = await refreshRates(toCurrency.code.toLowerCase());
+        if (!rates) {
+          console.error("No rates found for the selected currency.");
+          return;
+        }
+        setFromList(cryptoCurrencies);
+        setToList(rates);
+        initialToCurrency.current = rates.find(
+          (c) => c.code === fromCurrency.code
+        );
+
+        initialFromCurrency.current = cryptoCurrencies.find(
+          (c) => c.code === toCurrency.code
+        );
+      } else {
+        const rates = await refreshRates(
+          fromCurrency.code.toLowerCase(),
+          "buyRate"
+        );
+        if (!rates) {
+          console.error("No rates found for the selected currency.");
+          return;
+        }
+        setFromList(rates);
+        setToList(cryptoCurrencies);
+
+        initialToCurrency.current = cryptoCurrencies.find(
+          (c) => c.code === fromCurrency.code
+        );
+
+        initialFromCurrency.current = rates.find(
+          (c) => c.code === toCurrency.code
+        );
+      }
+    } catch (error) {
+      console.error("Error refreshing rates:", error);
+    }
   };
 
   if (fiatCurrencies.length === 0 || cryptoCurrencies.length === 0) return null;
 
+  const initialRatesFetch = async () => {
+    try {
+      const rates = await refreshRates(fromCurrency.code.toLowerCase());
+      if (!rates) {
+        console.error("No rates found for the selected currency.");
+        return;
+      }
+      setFromList(cryptoCurrencies);
+      setToList(rates);
+
+      initialToCurrency.current = rates.find((c) => c.code === toCurrency.code);
+
+      initialFromCurrency.current = fromCurrency;
+      setLoader(false);
+    } catch (error) {
+      console.error("Error fetching initial rates:", error);
+    }
+  };
+
+  const updateRates = async (selectedCurrency: Currency, label: string) => {
+    if (label === "from" && selectedCurrency.type === "crypto") {
+      const rates = await refreshRates(selectedCurrency.code.toLowerCase());
+      if (!rates) {
+        console.error("No rates found for the selected currency.");
+        return;
+      }
+      setFromList(cryptoCurrencies);
+      setToList(rates);
+      initialToCurrency.current = rates.find((c) => c.code === toCurrency.code);
+      initialFromCurrency.current = selectedCurrency;
+    }
+
+    if (label === "to" && selectedCurrency.type === "crypto") {
+      const rates = await refreshRates(
+        selectedCurrency.code.toLowerCase(),
+        "buyRate"
+      );
+      if (!rates) {
+        console.error("No rates found for the selected currency.");
+        return;
+      }
+      setFromList(rates);
+      setToList(cryptoCurrencies);
+
+      initialFromCurrency.current = rates.find(
+        (c) => c.code === fromCurrency.code
+      );
+      initialToCurrency.current = selectedCurrency;
+    }
+  };
+
   useEffect(() => {
-    setFromList(cryptoCurrencies);
-    setToList(fiatCurrencies);
-  }, [fiatCurrencies, cryptoCurrencies]);
+    initialRatesFetch();
+  }, []);
 
   return (
     <div>
-      <div className="md:flex items-center bg-[#191B1F] text-white p-4 max-w-[57.1rem] rounded-[2.8rem] gap-3 mx-7 mt-10 md:mx-auto relative z-140">
-        <CurrencyInput
-          label="from"
-          selectedCurrency={fromCurrency}
-          onCurrencySelect={setFromCurrency}
-          amount={fromAmount}
-          onAmountChange={handleFromAmountChange}
-          type="from"
-          currencies={fromList}
-          isActive={isActive}
-          setActive={setIsActive}
-        />
+      <div className="md:flex min-h-[10rem] items-center bg-[#191B1F] text-white p-4 max-w-[57.1rem] rounded-[2.8rem] gap-3 mx-7 mt-10 md:mx-auto relative z-140">
+        <>
+          {loader ? (
+            <Loader className="spinner mx-auto mt-[1.5rem] self-center" />
+          ) : (
+            <>
+              <CurrencyInput
+                label="from"
+                selectedCurrency={fromCurrency}
+                onCurrencySelect={setFromCurrency}
+                setStablecoin={updateRates}
+                amount={fromAmount}
+                onAmountChange={handleFromAmountChange}
+                type="from"
+                currencies={fromList}
+                isActive={isActive}
+                setActive={setIsActive}
+              />
 
-        <div className="flex justify-center -my-1">
-          <SwapButton onClick={handleSwapWithLists} />
-        </div>
+              <div className="flex justify-center -my-1">
+                <SwapButton onClick={handleSwapWithLists} />
+              </div>
 
-        <CurrencyInput
-          label="to"
-          selectedCurrency={toCurrency}
-          onCurrencySelect={setToCurrency}
-          amount={toAmount}
-          onAmountChange={handleToAmountChange}
-          type="to"
-          currencies={toList}
-          isActive={isActive}
-          setActive={setIsActive}
-        />
+              <CurrencyInput
+                label="to"
+                selectedCurrency={toCurrency}
+                onCurrencySelect={setToCurrency}
+                setStablecoin={updateRates}
+                amount={toAmount}
+                onAmountChange={handleToAmountChange}
+                type="to"
+                currencies={toList}
+                isActive={isActive}
+                setActive={setIsActive}
+              />
+            </>
+          )}
+        </>
       </div>
       <div className="mt-4 text-center text-xl text-white/50">
         {formatAmount(fromAmount)} {fromCurrency.code} ={" "}
         {formatAmount(toAmount)} {toCurrency.code ?? fiatCurrencies[0].code}
-        <img
-          src={Hline}
+        <Image
+          src='/hline.svg'
           alt="Hline"
+          width={120}
+          height={120}
           className="w-2 h-52 lg:h-52 xl:h-60 md:h-60 mx-auto"
         />
         <p className="text-center text-lg text-white/50 mb-2">
@@ -94,5 +203,3 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
     </div>
   );
 };
-
-export default CurrencyConverter;
