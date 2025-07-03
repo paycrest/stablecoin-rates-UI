@@ -11,7 +11,7 @@ import ExchangeView from "../exchanges/ExchangeView";
 import { Currency } from "../../types/currency";
 import { Loader } from "../../components/Loader";
 
-interface CurrencyConverterProps {}
+interface CurrencyConverterProps { }
 export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
   const [loader, setLoader] = useState<boolean>(false);
   const { fiatCurrencies, cryptoCurrencies, refreshRates } = useCurrencyRates();
@@ -107,7 +107,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
   };
 
   const updateRates = async (selectedCurrency: Currency, label: string) => {
-    
+
     if (label === "from" && selectedCurrency.type === "crypto") {
       const rates = await refreshRates(selectedCurrency.code.toLowerCase());
       if (!rates) {
@@ -135,11 +135,11 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
       setFromList(rates);
       setToList(cryptoCurrencies);
 
-      
 
 
-      
-      
+
+
+
 
       initialFromCurrency.current = rates.find(
         (c) => c.code === fromCurrency.code
@@ -196,7 +196,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
           )}
         </>
       </div>
-      <div className="mt-4 text-center text-xl text-white/50">
+      {isActive && <div className="mt-4 text-center text-xl text-white/50">
         {formatAmount(fromAmount)} {fromCurrency.code} ={" "}
         {formatAmount(toAmount)} {toCurrency.code ?? fiatCurrencies[0].code}
         <Image
@@ -212,7 +212,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
         <div className="mx-auto">
           <ExchangeView />
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

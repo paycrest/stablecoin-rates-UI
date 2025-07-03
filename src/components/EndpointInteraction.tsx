@@ -22,6 +22,8 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [errorCode, setErrorCode] = useState<string>("")
+
   const [paramsObject, setObjectParams] =
     useState<Record<string, string>>(params);
 
@@ -62,7 +64,8 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
     } catch (err) {
       setLoading(false);
       switchTab("Error");
-      setResponse(err);
+      setErrorCode((err as any).status.toString())
+      setResponse({Error: (err as any).message});
     }
   };
 
@@ -102,7 +105,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
             <li className="text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
               <div className="w-[5px] h-[5px] bg-white rounded-xl"></div>
               Method:
-              <span className="text-base text-white/80 uppercase font-normal bg-white/5 h-[20px] flex items-center border-[1px] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-base ml-[1.2rem] text-white/80 uppercase font-normal bg-white/5 h-[20px] flex items-center border-[1px] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {method}
               </span>
             </li>
@@ -111,7 +114,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
             <li className="text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
               <div className="w-[5px] h-[5px] bg-white rounded-xl"></div>
               Example:
-              <span className="text-base text-white/80 font-normal bg-white/5 h-[20px] flex items-center border-[1px] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-base ml-[.8rem] text-white/80 font-normal bg-white/5 h-[20px] flex items-center border-[1px] border-white/10 rounded-xl px-3 py-2 ms-2  height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal flex items-center border-[1px] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {example}
               </span>
             </li>
@@ -195,26 +198,24 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
               {/* Tab selection for success or error */}
               <div className="w-full flex gap-5 border-t border-white/10 px-5">
                 {/* Success tab */}
-                <div
+
+
+                {/* Error tab */}
+                {activeTab === "Error" ? <div
+                  // onClick={() => switchTab("Error")}
+                  className={`text-base text-[#ffffff] font-medium leading-5 flex gap-3 py-3 pr-2 cursor-pointer ${activeTab === "Error" ? "border-b border-[#F53D6B]" : ""
+                    }`}
+                >
+                  <div className="w-[6px] h-[12px] bg-[#F53D6B] rounded-2xl"></div>
+                  {errorCode}
+                </div> : <div
                   // onClick={() => switchTab("Success")}
-                  className={`text-base text-[#ffffff] font-medium leading-5 flex gap-3 py-3 pr-2 cursor-pointer ${
-                    activeTab === "Success" ? "border-b border-[#39C65D]" : ""
-                  }`}
+                  className={`text-base text-[#ffffff] font-medium leading-5 flex gap-3 py-3 pr-2 cursor-pointer ${activeTab === "Success" ? "border-b border-[#39C65D]" : ""
+                    }`}
                 >
                   <div className="w-[6px] h-[12px] bg-[#39C65D] rounded-2xl"></div>
                   200
-                </div>
-
-                {/* Error tab */}
-                <div
-                  // onClick={() => switchTab("Error")}
-                  className={`text-base text-[#ffffff] font-medium leading-5 flex gap-3 py-3 pr-2 cursor-pointer ${
-                    activeTab === "Error" ? "border-b border-[#F53D6B]" : ""
-                  }`}
-                >
-                  <div className="w-[6px] h-[12px] bg-[#F53D6B] rounded-2xl"></div>
-                  400
-                </div>
+                </div>}
               </div>
 
               {/* Divider */}
