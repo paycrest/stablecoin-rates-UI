@@ -107,6 +107,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
   };
 
   const updateRates = async (selectedCurrency: Currency, label: string) => {
+    
     if (label === "from" && selectedCurrency.type === "crypto") {
       const rates = await refreshRates(selectedCurrency.code.toLowerCase());
       if (!rates) {
@@ -116,6 +117,9 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
       setFromList(cryptoCurrencies);
       setToList(rates);
       initialToCurrency.current = rates.find((c) => c.code === toCurrency.code);
+      if (!initialToCurrency.current) {
+        initialToCurrency.current = rates[0];
+      }
       initialFromCurrency.current = selectedCurrency;
     }
 
@@ -131,9 +135,18 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
       setFromList(rates);
       setToList(cryptoCurrencies);
 
+      
+
+
+      
+      
+
       initialFromCurrency.current = rates.find(
         (c) => c.code === fromCurrency.code
       );
+      if (!initialFromCurrency.current) {
+        initialFromCurrency.current = rates[0];
+      }
       initialToCurrency.current = selectedCurrency;
     }
   };
@@ -144,7 +157,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
 
   return (
     <div>
-      <div className="md:flex min-h-[10rem] items-center bg-[#191B1F] text-white p-4 max-w-[57.1rem] rounded-[2.8rem] gap-3 mx-7 mt-10 md:mx-auto relative z-140">
+      <div className="md:flex min-h-[10rem] items-center bg-[#191B1F] text-white p-4 max-w-[57.1rem] rounded-[2.8rem] gap-3 mx-7 mt-10 md:mx-auto relative z-140 justify-self-center">
         <>
           {loader ? (
             <Loader className="spinner mx-auto mt-[1.5rem] self-center" />
