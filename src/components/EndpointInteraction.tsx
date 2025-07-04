@@ -72,14 +72,14 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
   return (
     <>
       {/* Main container for the endpoint card */}
-      <div className="bg-white/5 font-[inter] rounded-3xl m-auto md:w-1/2 w-[90%] md:max-w-[546px] mb-[2rem] font-sans">
+      <div className="bg-white/5 font-[inter] rounded-3xl m-auto md:w-1/2 w-[90%] md:max-w-[54.6rem] mb-[2rem] font-sans">
         {/* Title section */}
         <h1 className="text-xl font-medium text-[#ffffff] px-5 py-4">
           {title}
         </h1>
 
         {/* Divider */}
-        <hr className="border-[0.5px] border-color-[#141414]" />
+        <hr className="border-[0.05rem] border-color-[#141414]" />
 
         {/* Description section */}
         <p className="text-lg font-normal text-white/80 border-t border-white/10 px-5 py-3">
@@ -87,40 +87,40 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
         </p>
 
         {/* Divider */}
-        <hr className="border-[0.5px] border-color-[#141414]" />
+        <hr className="border-[0.05rem] border-color-[#141414]" />
 
         {/* Endpoint details list */}
         <div className="w-full border-t border-white/10 pt-3 pb-1 px-1">
           <ul className="px-3 mb-3">
             {/* Endpoint URL */}
             <li className="text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
-              <div className="w-[5px] h-[5px] bg-white rounded-xl"></div>
+              <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
               Endpoint:
-              <span className="text-base text-white/80 font-normal bg-white/5 h-[20px] flex items-center border-[1px] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {endpoint}
               </span>
             </li>
 
             {/* HTTP Method */}
             <li className="text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
-              <div className="w-[5px] h-[5px] bg-white rounded-xl"></div>
+              <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
               Method:
-              <span className="text-base ml-[1.2rem] text-white/80 uppercase font-normal bg-white/5 h-[20px] flex items-center border-[1px] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-base ml-[1.2rem] text-white/80 uppercase font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {method}
               </span>
             </li>
 
             {/* Example request */}
             <li className="text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
-              <div className="w-[5px] h-[5px] bg-white rounded-xl"></div>
+              <div className="w-[5.rem] h-[.5rem] bg-white rounded-xl"></div>
               Example:
-              <span className="text-base ml-[.8rem] text-white/80 font-normal bg-white/5 h-[20px] flex items-center border-[1px] border-white/10 rounded-xl px-3 py-2 ms-2  height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal flex items-center border-[1px] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-base ml-[.8rem] text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2  height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {example}
               </span>
             </li>
           </ul>
 
-          <hr className="border-[0.5px] border-color-[#141414]" />
+          <hr className="border-[0.05rem] border-color-[#141414]" />
           <div className="text-lg font-normal text-white/80 border-t border-white/10 px-5 py-3">
             {Object.keys(paramsObject).map((key) => (
               <div key={key} className="text-lg font-medium flex mb-[1rem]">
@@ -129,7 +129,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
                 <span className="ml-auto w-17/20">
                   <input
                     type="text"
-                    className="w-1/2 height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal bg-transparent flex items-center border-[1px] border-white/10 rounded-xl px-3 py-2 ms-2"
+                    className="w-1/2 height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal bg-transparent flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2"
                     onChange={(e) => {
                       setObjectParams((prev) => ({
                         ...prev,
@@ -193,7 +193,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
               </div>
 
               {/* Divider */}
-              <hr className="border-[0.5px] border-color-[#141414]" />
+              <hr className="border-[0.05rem] border-color-[#141414]" />
 
               {/* Tab selection for success or error */}
               <div className="w-full flex gap-5 border-t border-white/10 px-5">
@@ -206,23 +206,23 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
                   className={`text-base text-[#ffffff] font-medium leading-5 flex gap-3 py-3 pr-2 cursor-pointer ${activeTab === "Error" ? "border-b border-[#F53D6B]" : ""
                     }`}
                 >
-                  <div className="w-[6px] h-[12px] bg-[#F53D6B] rounded-2xl"></div>
+                  <div className="w-[.6rem] h-[1.2rem] bg-[#F53D6B] rounded-2xl"></div>
                   {errorCode}
                 </div> : <div
                   // onClick={() => switchTab("Success")}
                   className={`text-base text-[#ffffff] font-medium leading-5 flex gap-3 py-3 pr-2 cursor-pointer ${activeTab === "Success" ? "border-b border-[#39C65D]" : ""
                     }`}
                 >
-                  <div className="w-[6px] h-[12px] bg-[#39C65D] rounded-2xl"></div>
+                  <div className="w-[.6rem] h-[1.2rem] bg-[#39C65D] rounded-2xl"></div>
                   200
                 </div>}
               </div>
 
               {/* Divider */}
-              <hr className="border-[0.5px] border-color-[#141414] -mt-[1px]" />
+              <hr className="border-[0.05rem] border-color-[#141414] -mt-[.1rem]" />
 
               {/* JSON display block */}
-              <div className="w-full max-h-[500px] text-[#ffffff] text-base leading-5 border-t border-white/10 overflow-auto px-5 py-4">
+              <div className="w-full max-h-[50rem] text-[#ffffff] text-base leading-5 border-t border-white/10 overflow-auto px-5 py-4">
                 <JSONPretty data={response} theme={customTheme} />
               </div>
             </div>
