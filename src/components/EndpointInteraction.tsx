@@ -154,7 +154,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
             ))}
 
             <button
-              className="ml-[25%] height-[4.4rem] bg-button flex items-center justify-center gap-2 px-2 py-2 !rounded-[1rem] hover:bg-[#3C3C3E] transition-colors max-w-[10rem] !w-screen cursor-pointer"
+              className="ml-[25%] md:ml-[15%] height-[4.4rem] bg-button flex items-center justify-center gap-2 px-2 py-2 !rounded-[1rem] hover:bg-[#3C3C3E] transition-colors max-w-[10rem] !w-screen cursor-pointer"
               onClick={() => queryEndpoint()}
               disabled={loading}
             >
