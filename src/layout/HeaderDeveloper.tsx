@@ -23,7 +23,7 @@ export function HeaderDeveloper() {
 
         <h3 className="text-white text-[2rem] font-medium">For Developers</h3>
         <p className="text-white/50 text-[1.4rem]">
-          Get rate data https://api.rates.noblocks.xyz/for_developers
+          Get rate data https://api.rates.noblocks.xyz/
         </p>
         <h3 className="text-white text-[1.5rem] font-medium pt-4">
           REST API Schema and Enpoint
