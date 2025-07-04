@@ -65,7 +65,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
       setLoading(false);
       switchTab("Error");
       setErrorCode((err as any).status.toString())
-      setResponse({Error: (err as any).message});
+      setResponse({ Error: (err as any).message });
     }
   };
 
@@ -91,45 +91,57 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
 
         {/* Endpoint details list */}
         <div className="w-full border-t border-white/10 pt-3 pb-1 px-1">
-          <ul className="px-3 mb-3">
-            {/* Endpoint URL */}
-            <li className="text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
-              <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
-              Endpoint:
-              <span className="text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
+          <ul className="px-3 mb-3 flex">
+            <div>
+              <li className="mb-[.7rem] text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
+                <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
+                Endpoint:
+
+              </li>
+
+              {/* HTTP Method */}
+              <li className="mb-[.7rem] text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
+                <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
+                Method:
+              </li>
+
+              {/* Example request */}
+              <li className="mb-[.7rem] text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
+                <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
+                Example:
+
+              </li>
+            </div>
+            <div>
+              <span className="w-min mb-[.5rem] text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {endpoint}
               </span>
-            </li>
-
-            {/* HTTP Method */}
-            <li className="text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
-              <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
-              Method:
-              <span className="text-base ml-[1.2rem] text-white/80 uppercase font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="w-min mb-[.5rem] text-base text-white/80 uppercase font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {method}
               </span>
-            </li>
-
-            {/* Example request */}
-            <li className="text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
-              <div className="w-[5.rem] h-[.5rem] bg-white rounded-xl"></div>
-              Example:
-              <span className="text-base ml-[.8rem] text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2  height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="w-min mb-[.5rem] text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2  height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {example}
               </span>
-            </li>
+            </div>
+
+
           </ul>
 
           <hr className="border-[0.05rem] border-color-[#141414]" />
           <div className="text-lg font-normal text-white/80 border-t border-white/10 px-5 py-3">
-            {Object.keys(paramsObject).map((key) => (
-              <div key={key} className="text-lg font-medium flex mb-[1rem]">
-                {`${key}:`}
 
-                <span className="ml-auto w-17/20">
+            {Object.keys(paramsObject).map((key) => (
+              <div key={key} className="text-lg w-full font-medium mb-[1rem] flex">
+                <div className="w-1/4">
+                  {`${key}:`}
+                </div>
+
+
+
+                <span className="ml-auto w-3/4">
                   <input
                     type="text"
-                    className="w-1/2 height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal bg-transparent flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2"
+                    className="w-1/2 height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal bg-transparent flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2"
                     onChange={(e) => {
                       setObjectParams((prev) => ({
                         ...prev,
@@ -140,8 +152,9 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
                 </span>
               </div>
             ))}
+
             <button
-              className="ml-[16%] height-[4.4rem] bg-button flex items-center justify-center gap-2 px-2 py-2 !rounded-[1rem] hover:bg-[#3C3C3E] transition-colors max-w-[10rem] !w-screen cursor-pointer"
+              className="ml-[25%] height-[4.4rem] bg-button flex items-center justify-center gap-2 px-2 py-2 !rounded-[1rem] hover:bg-[#3C3C3E] transition-colors max-w-[10rem] !w-screen cursor-pointer"
               onClick={() => queryEndpoint()}
               disabled={loading}
             >
