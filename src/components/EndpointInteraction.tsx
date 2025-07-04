@@ -132,13 +132,13 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
 
             {Object.keys(paramsObject).map((key) => (
               <div key={key} className="text-lg w-full font-medium mb-[1rem] flex">
-                <div className="w-1/4">
+                <div className="w-1/4 md:w-3/20">
                   {`${key}:`}
                 </div>
 
 
 
-                <span className="ml-auto w-3/4">
+                <span className="ml-auto w-3/4 md:w-17/20">
                   <input
                     type="text"
                     className="w-1/2 height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal bg-transparent flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2"
