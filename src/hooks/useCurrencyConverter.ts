@@ -42,12 +42,16 @@ export function useCurrencyConverter(
     }
   };
 
-  useEffect(() => {
+  const triggerConversion = () => {
     if (activeInput === "from" && fromAmount) {
       convertCurrency(fromAmount, fromCurrency, toCurrency, "from");
     } else if (activeInput === "to" && toAmount) {
       convertCurrency(toAmount, fromCurrency, toCurrency, "to");
     }
+  }
+
+  useEffect(() => {
+    triggerConversion();
   }, [fromCurrency, toCurrency]);
 
   const handleFromAmountChange = (value: string) => {
@@ -72,10 +76,12 @@ export function useCurrencyConverter(
       hasMounted.current = true; // Skip the first run
       return;
     }
-
    
     setToCurrency(initialToCurrency);
     setFromCurrency(initialFromCurrency);
+
+    triggerConversion()
+
   }, [initialFromCurrency, initialToCurrency]);
 
   return {
