@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { api } from "@/utils/axios";
 import { cryptoCurrencies } from "@/data/cryptoCurrencies";
-import currenciesCodes from "@/data/currenciesCodes";
+import currenciesCodes from "@/data/currenciesCodes.json";
 
 export const useCurrencyRates = () => {
   const rates = useRef<any[]>([
@@ -31,18 +31,18 @@ export const useCurrencyRates = () => {
 
         return {
           code: item.fiat,
-          name: currency.currency_name,
+          name: currency?.currency_name,
           type: "fiat",
           rate: rateType == "sellRate" ? item.sellRate : item.buyRate,
-          symbol: currency.country_code,
+          symbol: currency?.country_code,
         };
       });
 
-      const codes = fiatRates.reduce((acc, item) => {
+      const codes = fiatRates.reduce((acc: any, item: any) => {
         const country = currenciesCodes.find(
           (countryItem) => countryItem.currency_code === item.code
         );
-        return { ...acc, [item.code]: country.country_code };
+        return { ...acc, [item.code]: country?.country_code };
       }, {});
 
       setFiatCodes(codes);

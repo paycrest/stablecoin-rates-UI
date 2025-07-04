@@ -54,12 +54,12 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
         setFromList(cryptoCurrencies);
         setToList(rates);
         initialToCurrency.current = rates.find(
-          (c) => c.code === fromCurrency.code
+          (c: any) => c.code === fromCurrency.code
         );
 
         initialFromCurrency.current = cryptoCurrencies.find(
           (c) => c.code === toCurrency.code
-        );
+        )!;
       } else {
         const rates = await refreshRates(
           fromCurrency.code.toLowerCase(),
@@ -74,10 +74,10 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
 
         initialToCurrency.current = cryptoCurrencies.find(
           (c) => c.code === fromCurrency.code
-        );
+        )!;
 
         initialFromCurrency.current = rates.find(
-          (c) => c.code === toCurrency.code
+          (c: Currency) => c.code === toCurrency.code
         );
       }
     } catch (error) {
@@ -97,7 +97,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
       setFromList(cryptoCurrencies);
       setToList(rates);
 
-      initialToCurrency.current = rates.find((c) => c.code === toCurrency.code);
+      initialToCurrency.current = rates.find((c: Currency) => c.code === toCurrency.code);
 
       initialFromCurrency.current = fromCurrency;
       setLoader(false);
@@ -116,7 +116,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
       }
       setFromList(cryptoCurrencies);
       setToList(rates);
-      initialToCurrency.current = rates.find((c) => c.code === toCurrency.code);
+      initialToCurrency.current = rates.find((c: Currency) => c.code === toCurrency.code);
       if (!initialToCurrency.current) {
         initialToCurrency.current = rates[0];
       }
@@ -142,7 +142,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
 
 
       initialFromCurrency.current = rates.find(
-        (c) => c.code === fromCurrency.code
+        (c: Currency) => c.code === fromCurrency.code
       );
       if (!initialFromCurrency.current) {
         initialFromCurrency.current = rates[0];

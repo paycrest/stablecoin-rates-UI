@@ -4,7 +4,7 @@ export interface EndpointInteractionProps {
   endpoint: string;
   method: string;
   example: string;
-  successData: Object;
-  errorData: Object;
+  successData?: Object;
+  errorData?: Object;
   params: Record<string, string>;
 }

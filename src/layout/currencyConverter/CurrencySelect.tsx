@@ -78,7 +78,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
       >
         {selectedCurrency.type === "fiat" ? (
           <div className="flex items-center justify-center w-6 h-6 rounded-full">
-            <>{countryCodeToFlag(selectedCurrency.symbol)}</>
+            <>{countryCodeToFlag(selectedCurrency.symbol!)}</>
           </div>
         ) : (
           <img
@@ -123,7 +123,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
                 }}
               >
                 {currency.type === "fiat" ? (
-                  <>{countryCodeToFlag(currency.symbol)}</>
+                  <>{countryCodeToFlag(currency.symbol!)}</>
                 ) : (
                   <img
                     src={currency.iconUrl}
