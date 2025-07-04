@@ -5,7 +5,7 @@ html {
   font-size: 75%;
 
   @media screen and (max-width: 600px) {
-    font-size: 67%;
+    font-size: 70%;
   }
 }
 
