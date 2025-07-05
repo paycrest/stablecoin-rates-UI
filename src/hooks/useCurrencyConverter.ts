@@ -73,14 +73,12 @@ export function useCurrencyConverter(
 
   useEffect(() => {
     if (!hasMounted.current) {
-      hasMounted.current = true; // Skip the first run
+      hasMounted.current = true;
       return;
     }
 
     setToCurrency(initialToCurrency);
     setFromCurrency(initialFromCurrency);
-
-    console.log(initialFromCurrency, initialToCurrency);
 
     triggerConversion();
   }, [initialFromCurrency, initialToCurrency]);
