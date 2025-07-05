@@ -5,7 +5,7 @@ import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="bg-background min-h-screen flex flex-col relative pb-32">
+    <div className="bg-background min-h-screen flex flex-col relative pb-21">
       <Header />
       <Routes>
         <Route element={<Home />} path="/" />

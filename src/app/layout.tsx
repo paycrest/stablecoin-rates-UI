@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="bg-background min-h-screen flex flex-col relative pb-32">
+        <div className="bg-background min-h-screen flex flex-col relative pb-21">
           {children}
         </div>
       </body>
