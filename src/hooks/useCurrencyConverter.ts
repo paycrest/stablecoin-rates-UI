@@ -33,11 +33,11 @@ export function useCurrencyConverter(
 
     if (direction === "from") {
       const converted = usdAmount * to.rate;
-      setToAmount(converted.toFixed(2));
+      setToAmount(converted.toFixed(4));
       setFromAmount(amount);
     } else {
       const converted = usdAmount * from.rate;
-      setFromAmount(converted.toFixed(2));
+      setFromAmount(converted.toFixed(4));
       setToAmount(amount);
     }
   };
@@ -79,6 +79,8 @@ export function useCurrencyConverter(
 
     setToCurrency(initialToCurrency);
     setFromCurrency(initialFromCurrency);
+
+    console.log(initialFromCurrency, initialToCurrency);
 
     triggerConversion();
   }, [initialFromCurrency, initialToCurrency]);
