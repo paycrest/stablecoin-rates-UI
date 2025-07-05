@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Currency } from "@/types/currency";
 import { CurrencySelect } from "./CurrencySelect";
 import { useCurrencyRates } from "@/hooks/useCurrencyRates";
+import { ChangeEvent } from "react";
 
 interface CurrencyInputProps {
   label: string;
@@ -32,6 +33,65 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 }: CurrencyInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [hasTyped, setHasTyped] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [displayValue, setDisplayValue] = useState(amount);
+
+  const updateCurrency = (currency: Currency) => {
+    setStablecoin?.(currency, label);
+    onCurrencySelect(currency);
+  };
+
+  const formatNumber = (num: string): string => {
+    const parts = num.replace(/,/g, "").split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  };
+
+  useEffect(() => {
+    setDisplayValue(formatNumber(amount));
+  }, [amount]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const input = e.target;
+    const rawValue = input.value.replace(/,/g, "");
+
+    const sanitizedValue = rawValue.replace(/[^0-9.]/g, "");
+    const parts = sanitizedValue.split(".");
+    if (parts.length > 2) return; // Prevent multiple decimals
+
+    // Format integer part with commas for display
+    let formattedValue = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if (parts.length === 2) {
+      formattedValue += "." + parts[1];
+    }
+
+    const selectionStart = input.selectionStart || 0;
+    const charsBeforeCursor = input.value
+      .slice(0, selectionStart)
+      .replace(/,/g, "");
+    let newCursorPos = formattedValue.length;
+
+    let j = 0,
+      i = 0;
+    while (i < charsBeforeCursor.length && j < formattedValue.length) {
+      if (charsBeforeCursor[i] === formattedValue[j]) {
+        i++;
+      }
+      j++;
+    }
+    newCursorPos = j;
+
+    setDisplayValue(formattedValue);
+    onAmountChange(sanitizedValue);
+    setHasTyped(true);
+    setActive(true);
+
+    requestAnimationFrame(() => {
+      if (inputRef.current) {
+        inputRef.current.setSelectionRange(newCursorPos, newCursorPos);
+      }
+    });
+  };
 
   useEffect(() => {
     if (!amount) {
@@ -39,11 +99,6 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
       setHasTyped(false);
     }
   }, [amount, setActive]);
-
-  const updateCurrency = (currency: Currency) => {
-    setStablecoin?.(currency, label);
-    onCurrencySelect(currency);
-  };
 
   return (
     <div
@@ -81,15 +136,13 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
             type={type}
           />
           <input
-            type="number"
-            value={amount}
+            value={displayValue}
             onChange={(e) => {
-              onAmountChange(e.target.value);
-              setHasTyped(true);
-              setActive(true);
+              handleChange(e);
             }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => !hasTyped && setIsFocused(false)}
+            ref={inputRef}
             placeholder="0"
             className={`bg-transparent w-full focus:outline-none placeholder-white/50 text-[2rem] ${
               type === "from" ? "md:text-right text-left" : "text-left"

@@ -48,7 +48,7 @@ export function useCurrencyConverter(
     } else if (activeInput === "to" && toAmount) {
       convertCurrency(toAmount, fromCurrency, toCurrency, "to");
     }
-  }
+  };
 
   useEffect(() => {
     triggerConversion();
@@ -76,12 +76,11 @@ export function useCurrencyConverter(
       hasMounted.current = true; // Skip the first run
       return;
     }
-   
+
     setToCurrency(initialToCurrency);
     setFromCurrency(initialFromCurrency);
 
-    triggerConversion()
-
+    triggerConversion();
   }, [initialFromCurrency, initialToCurrency]);
 
   return {
