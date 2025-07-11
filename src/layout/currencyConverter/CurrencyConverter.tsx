@@ -28,6 +28,8 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
     toCurrency,
     fromAmount,
     toAmount,
+    toRates,
+    fromRates,
     setFromCurrency,
     setToCurrency,
     handleFromAmountChange,
@@ -197,8 +199,8 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
         </>
       </div>
       {isActive && <div className="mt-4 text-center text-xl text-white/50">
-        {formatAmount(fromAmount)} {fromCurrency.code} ={" "}
-        {formatAmount(toAmount)} {toCurrency.code ?? fiatCurrencies[0].code}
+        {formatAmount(fromRates)} {fromCurrency.code} ={" "}
+        {formatAmount(toRates)} {toCurrency.code ?? fiatCurrencies[0].code}
         <Image
           src='/hline.svg'
           alt="Hline"

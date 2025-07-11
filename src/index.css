@@ -3,7 +3,7 @@
 
 html {
   font-size: 75%;
-  font-variant-emoji: emoji;
+  
 
   @media screen and (max-width: 600px) {
     font-size: 70%;
@@ -16,6 +16,10 @@ html {
   height: 1.5rem;
 }
 
+pre {
+  font-size: 1.166rem;
+}
+
 @theme {
   --color-background: #141414;
   --color-white-dull: #ffffff80;
@@ -23,6 +27,7 @@ html {
   --color-hero-text: #e7dddd;
   --color-button: #8B85F4;
   --color-converter-bg: #202020;
+  --color-swap-bg: #6D6C6D;
 }
 
 /* Custom scrollbar styles */
@@ -65,6 +70,10 @@ input[type="number"] {
     "Android Emoji", serif;
   font-optical-sizing: auto;
   font-style: italic;
+}
+
+.emoji-element {
+  font-variant-emoji: emoji;
 }
 
 @media (width=48rem

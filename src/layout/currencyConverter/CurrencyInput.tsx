@@ -109,7 +109,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
             ? "bg-gradient-to-br from-[#5c462e] to-[#402d50]"
             : "bg-zinc-800"
         }
-        transition-all duration-300
+        transition-all duration-300 
       `}
     >
       <div className="bg-[#141414] rounded-[1.9rem] p-4 border border-white/5">

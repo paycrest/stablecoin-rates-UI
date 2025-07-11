@@ -9,6 +9,8 @@ export function useCurrencyConverter(
     useState<Currency>(initialFromCurrency);
   const [toCurrency, setToCurrency] = useState<Currency>(initialToCurrency);
   const [fromAmount, setFromAmount] = useState<string>("");
+  const [toRates, setToRates] = useState<string>("");
+  const [fromRates, setFromRates] = useState<string>("")
   const [toAmount, setToAmount] = useState<string>("");
   const [activeInput, setActiveInput] = useState<"from" | "to">("from");
   const hasMounted = useRef(false);
@@ -33,10 +35,14 @@ export function useCurrencyConverter(
 
     if (direction === "from") {
       const converted = usdAmount * to.rate;
+      setToRates(to.rate.toString())
+      setFromRates(from.rate.toString())
       setToAmount(converted.toFixed(4));
       setFromAmount(amount);
     } else {
       const converted = usdAmount * from.rate;
+      setFromRates(from.rate.toString())
+      setToRates(to.rate.toString())
       setFromAmount(converted.toFixed(4));
       setToAmount(amount);
     }
@@ -88,6 +94,8 @@ export function useCurrencyConverter(
     toCurrency,
     fromAmount,
     toAmount,
+    toRates,
+    fromRates,
     setFromCurrency,
     setToCurrency,
     handleFromAmountChange,

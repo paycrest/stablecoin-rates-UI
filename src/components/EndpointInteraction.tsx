@@ -72,9 +72,9 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
   return (
     <>
       {/* Main container for the endpoint card */}
-      <div className="bg-white/5 font-[inter] rounded-3xl m-auto md:w-1/2 w-[90%] md:max-w-[54.6rem] mb-[2rem] font-sans">
+      <div className="bg-white/5 font-[inter] rounded-3xl m-auto md:w-1/2 w-[90%] md:max-w-[45.5rem] mb-[2rem] font-sans">
         {/* Title section */}
-        <h1 className="text-xl font-medium text-[#ffffff] px-5 py-4">
+        <h1 className="text-[1.333rem] font-medium text-[#ffffff] px-5 py-4">
           {title}
         </h1>
 
@@ -82,7 +82,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
         <hr className="border-[0.05rem] border-color-[#141414]" />
 
         {/* Description section */}
-        <p className="text-lg font-normal text-white/80 border-t border-white/10 px-5 py-3">
+        <p className="text-[1.166rem] font-normal text-white/80 border-t border-white/10 px-5 py-3">
           {description}
         </p>
 
@@ -91,35 +91,35 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
 
         {/* Endpoint details list */}
         <div className="w-full border-t border-white/10 pt-3 pb-1 px-1">
-          <ul className="px-3 mb-3 flex">
+          <ul className="px-3 mb-3 flex items-center text-[#ffffff]">
             <div>
-              <li className="mb-[.7rem] text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
+              <li className="mb-[.7rem] text-[1.166rem] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
                 <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
                 Endpoint:
 
               </li>
 
               {/* HTTP Method */}
-              <li className="mb-[.7rem] text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
+              <li className="mb-[.7rem] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
                 <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
                 Method:
               </li>
 
               {/* Example request */}
-              <li className="mb-[.7rem] text-[#ffffff] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
+              <li className="mb-[.7rem] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
                 <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
                 Example:
 
               </li>
             </div>
             <div>
-              <span className="w-min mb-[.5rem] text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-[1.166rem] w-min mb-[.5rem] text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {endpoint}
               </span>
-              <span className="w-min mb-[.5rem] text-base text-white/80 uppercase font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-[1.166rem] w-min mb-[.5rem] text-base text-white/80 uppercase font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {method}
               </span>
-              <span className="w-min mb-[.5rem] text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2  height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-[1.166rem] w-min mb-[.5rem] text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2  height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {example}
               </span>
             </div>
@@ -128,20 +128,20 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
           </ul>
 
           <hr className="border-[0.05rem] border-color-[#141414]" />
-          <div className="text-lg font-normal text-white/80 border-t border-white/10 px-5 py-3">
+          <div className="text-lg font-normal text-white/80 border-t border-white/10 px-5 py-3 flex *:max-w-1/2 gap-4">
 
             {Object.keys(paramsObject).map((key) => (
-              <div key={key} className="text-lg w-full font-medium mb-[1rem] flex">
-                <div className="w-1/4 md:w-3/20">
+              <div key={key} className="text-lg w-full font-medium mb-[1rem]">
+                <div className="w-1/4 md:w-3/20 text-[1.166rem]">
                   {`${key}:`}
                 </div>
 
 
 
-                <span className="ml-auto w-3/4 md:w-17/20">
+                <span className="ml-auto w-3/4 md:w-17/20  ">
                   <input
                     type="text"
-                    className="w-1/2 height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal bg-transparent flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2"
+                    className="w-full height-[4.4rem] mt-[.833rem] focus:outline-hidden text-base text-white/80 font-normal bg-transparent flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2"
                     onChange={(e) => {
                       setObjectParams((prev) => ({
                         ...prev,
@@ -153,14 +153,15 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
               </div>
             ))}
 
-            <button
-              className="ml-[25%] md:ml-[15%] height-[4.4rem] bg-button flex items-center justify-center gap-2 px-2 py-2 !rounded-[1rem] hover:bg-[#3C3C3E] transition-colors max-w-[10rem] !w-screen cursor-pointer"
+            
+          </div>
+          <button
+              className="text-white ml-5 mb-3 height-[4.4rem] bg-button flex items-center justify-center gap-2 px-2 py-2 !rounded-[1rem] hover:bg-[#3C3C3E] transition-colors max-w-[10rem] px-2 py-[.5rem] cursor-pointer"
               onClick={() => queryEndpoint()}
               disabled={loading}
             >
               {loading ? <Loader className="spinner" /> : `Query`}
             </button>
-          </div>
 
           {/* Response block container */}
           {response && (
