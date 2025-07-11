@@ -21,7 +21,7 @@ export function HeaderDeveloper() {
           </div>
         </div>
 
-        <h3 className="text-white text-[1.66rem] font-medium">For Developers</h3>
+        <h3 className="text-white text-[1.67rem] font-medium">For Developers</h3>
         <p className="text-white/50 text-[1.16667rem]">
           Get rate data https://api.rates.noblocks.xyz/
         </p>

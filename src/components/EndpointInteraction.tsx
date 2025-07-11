@@ -74,7 +74,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
       {/* Main container for the endpoint card */}
       <div className="bg-white/5 font-[inter] rounded-3xl m-auto md:w-1/2 w-[90%] md:max-w-[45.5rem] mb-[2rem] font-sans">
         {/* Title section */}
-        <h1 className="text-[1.333rem] font-medium text-[#ffffff] px-5 py-4">
+        <h1 className="text-[1.3336rem] font-medium text-[#ffffff] px-5 py-4">
           {title}
         </h1>
 
@@ -82,7 +82,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
         <hr className="border-[0.05rem] border-color-[#141414]" />
 
         {/* Description section */}
-        <p className="text-[1.166rem] font-normal text-white/80 border-t border-white/10 px-5 py-3">
+        <p className="text-[1.1667rem] font-normal text-white/80 border-t border-white/10 px-5 py-3">
           {description}
         </p>
 
@@ -93,7 +93,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
         <div className="w-full border-t border-white/10 pt-3 pb-1 px-1">
           <ul className="px-3 mb-3 flex items-center text-[#ffffff]">
             <div>
-              <li className="mb-[.7rem] text-[1.166rem] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
+              <li className="mb-[.7rem] text-[1.1667rem] text-lg font-medium leading-5 flex items-center gap-3 py-1 px-3 mb-2">
                 <div className="w-[.5rem] h-[.5rem] bg-white rounded-xl"></div>
                 Endpoint:
 
@@ -113,13 +113,13 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
               </li>
             </div>
             <div>
-              <span className="text-[1.166rem] w-min mb-[.5rem] text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-[1.1667rem] w-min mb-[.5rem] text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {endpoint}
               </span>
-              <span className="text-[1.166rem] w-min mb-[.5rem] text-base text-white/80 uppercase font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-[1.1667rem] w-min mb-[.5rem] text-base text-white/80 uppercase font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {method}
               </span>
-              <span className="text-[1.166rem] w-min mb-[.5rem] text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2  height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
+              <span className="text-[1.1667rem] w-min mb-[.5rem] text-base text-white/80 font-normal bg-white/5 h-[2rem] flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2  height-[4.4rem] focus:outline-hidden text-base text-white/80 font-normal flex items-center border-[.1rem] border-white/10 rounded-xl px-3 py-2 ms-2">
                 {example}
               </span>
             </div>
@@ -132,7 +132,7 @@ export const EndpointInteraction: React.FC<EndpointInteractionProps> = ({
 
             {Object.keys(paramsObject).map((key) => (
               <div key={key} className="text-lg w-full font-medium mb-[1rem]">
-                <div className="w-1/4 md:w-3/20 text-[1.166rem]">
+                <div className="w-1/4 md:w-3/20 text-[1.1667rem]">
                   {`${key}:`}
                 </div>
 
