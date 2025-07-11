@@ -159,7 +159,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = () => {
 
   return (
     <div>
-      <div className="md:flex min-h-[10.4rem] border-1 border-white/10 items-center bg-converter-bg text-white p-4 max-w-[57.1rem] rounded-[2.8rem] gap-3 mx-7 mt-10 md:mx-auto relative z-140 justify-self-center">
+      <div className="md:flex min-h-[10.4rem] border-1 border-white/10 items-center bg-converter-bg text-white p-[.6rem] max-w-[55rem] rounded-[2.8rem] gap-3 mx-7 mt-10 md:mx-auto relative z-140 justify-self-center">
         <>
           {loader ? (
             <Loader className="spinner mx-auto mt-[1.5rem] self-center" />
