@@ -87,7 +87,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
             className="w-8 h-8 rounded-full"
           />
         )}
-        <span className="font-medium text-[1.4rem]">
+        <span className="font-medium text-[1.16667rem]">
           {selectedCurrency.code}
         </span>
         <ChevronDown className="w-8 h-8" />
@@ -95,17 +95,17 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
 
       {isOpen && (
         <div
-          className={`absolute top-[3.5rem] mt-2 w-screen max-w-[23rem] bg-[#2C2C2E] rounded-xl shadow-lg z-100 ${
+          className={`absolute top-[3.5rem] border-1 border-white/10 mt-8 w-screen max-w-[23rem] bg-[#2C2C2E] rounded-[1.6667rem] shadow-lg z-100 ${
             type === "from" ? "right-0" : "right-0"
           }`}
         >
-          <div className="p-2 rounded-[1.2rem]">
+          <div className="p-2 rounded-[rounded-[0.99996rem]rem]">
             <div className="relative border-1 border-white/10 rounded-[1.2rem]">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/30 h-8 w-8" />
               <input
                 type="text"
                 placeholder="Search currency"
-                className="w-full bg-transparent rounded-[1.2rem] pl-14 pr-4 py-2 text-[1.4rem] text-white placeholder-white/50 focus:outline-none"
+                className="w-full bg-transparent rounded-[rounded-[0.99996rem]rem] pl-14 pr-4 py-2 text-[1.16667rem] text-white placeholder-white/50 focus:outline-none"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -134,10 +134,10 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
                 <div className="flex flex-col w-full">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-start gap-2">
-                      <span className="font-medium text-[1.4rem] text-white">
+                      <span className="font-medium text-[1.16667rem] text-white">
                         {currency.code}
                       </span>
-                      <span className="text-[1.4rem] text-white/80">
+                      <span className="text-[1.16667rem] text-white/80">
                         {currency.name}
                       </span>
                     </div>

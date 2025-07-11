@@ -103,7 +103,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   return (
     <div
       className={`
-        rounded-[2.4rem] p-[.5rem] 
+        rounded-[2.4rem] p-[0.33332rem] 
         ${
           isActive || isFocused
             ? "bg-gradient-to-br from-[#5c462e] to-[#402d50]"
@@ -120,7 +120,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
               : "flex justify-end md:justify-start"
           } mb-2`}
         >
-          <label className="text-[1.4rem] text-white/50">{label}</label>
+          <label className="text-[1.16667rem] text-white/50 leading-[2rem]">{label}</label>
         </div>
         <div
           className={`flex justify-between gap-4 ${

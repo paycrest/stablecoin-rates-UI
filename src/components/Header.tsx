@@ -24,7 +24,7 @@ const Header: React.FC = () => {
         href="/developers"
         className={` ${
           pathname?.includes("developers") ? "text-white" : "text-white-dull"
-        } text-[1.4rem] font-medium text-base hover:text-white active:text-white transition duration-200 ease-in-out`}
+        } text-[1.33328rem] font-medium text-base hover:text-white active:text-white transition duration-200 ease-in-out`}
       >
         For Developers
       </Link>
