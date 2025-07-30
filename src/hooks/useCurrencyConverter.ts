@@ -37,13 +37,14 @@ export function useCurrencyConverter(
       const converted = usdAmount * to.rate;
       setToRates(to.rate.toString())
       setFromRates(from.rate.toString())
-      setToAmount(converted.toFixed(4));
+      to.type == 'fiat' ? setToAmount(converted.toFixed(4)) : setToAmount(converted.toFixed(2))
       setFromAmount(amount);
     } else {
+      console.log(from)
       const converted = usdAmount * from.rate;
       setFromRates(from.rate.toString())
       setToRates(to.rate.toString())
-      setFromAmount(converted.toFixed(4));
+      from.type == 'fiat' ? setFromAmount(converted.toFixed(4)) : setFromAmount(converted.toFixed(2))
       setToAmount(amount);
     }
   };

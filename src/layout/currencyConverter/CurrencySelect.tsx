@@ -3,29 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Search, ChevronDown, Check } from "lucide-react";
 import { Currency } from "@/types/currency";
-
-function countryCodeToFlag(nationalCode: string) {
-  if (typeof nationalCode !== "string") return "🏳️";
-  const countryCode = nationalCode.trim().toLowerCase();
-
-  if (
-    !countryCode ||
-    countryCode.length !== 2 ||
-    !/^[a-zA-Z]+$/.test(countryCode)
-  ) {
-    return "🏳️";
-  }
-
-  const code = countryCode.toUpperCase();
-
-  const offset = 127397;
-
-  const flag = Array.from(code)
-    .map((letter) => String.fromCodePoint(letter.charCodeAt(0) + offset))
-    .join("");
-
-  return flag;
-}
+import 'flag-icons/css/flag-icons.min.css';
 
 interface CurrencySelectProps {
   currencies: Currency[];
@@ -77,9 +55,10 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
         className="flex items-center justify-center emoji-element gap-2 px-2 py-2 !rounded-[2rem] bg-white/5 hover:bg-[#3C3C3E] transition-colors max-w-[10rem] !w-screen cursor-pointer"
       >
         {selectedCurrency.type === "fiat" ? (
-          <div className="flex items-center justify-center w-6 h-6 rounded-full">
-            <>{countryCodeToFlag(selectedCurrency.symbol!)}</>
-          </div>
+          <span
+            className={`fi fi-${selectedCurrency.symbol!.toLowerCase()} w-8 h-8 rounded-full`}
+            title={`Flag of ${selectedCurrency.symbol!.toUpperCase()}`}
+          />
         ) : (
           <img
             src={selectedCurrency.iconUrl}
@@ -95,9 +74,8 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
 
       {isOpen && (
         <div
-          className={`emoji-element absolute top-[3.5rem] border-1 border-white/10 mt-8 w-screen max-w-[23rem] bg-converter-bg rounded-[1.6667rem] shadow-lg z-100 ${
-            type === "from" ? "right-0" : "right-0"
-          }`}
+          className={`emoji-element absolute top-[3.5rem] border-1 border-white/10 mt-8 w-screen max-w-[23rem] bg-converter-bg rounded-[1.6667rem] shadow-lg z-100 ${type === "from" ? "right-0" : "right-0"
+            }`}
         >
           <div className="p-2 rounded-[rounded-[1rem]rem]">
             <div className="relative border-1 border-white/10 rounded-[1.2rem]">
@@ -111,7 +89,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
               />
             </div>
           </div>
-          
+
           <div className="max-h-[24rem] overflow-y-auto">
             {filteredCurrencies.map((currency) => (
               <button
@@ -123,7 +101,10 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
                 }}
               >
                 {currency.type === "fiat" ? (
-                  <>{countryCodeToFlag(currency.symbol!)}</>
+                  <span
+                    className={`fi fi-${currency.symbol!.toLowerCase()} w-8 h-8 rounded-full`}
+                    title={`Flag of ${currency.symbol!.toUpperCase()}`}
+                  />
                 ) : (
                   <img
                     src={currency.iconUrl}
