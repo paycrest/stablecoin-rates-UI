@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Search, ChevronDown, Check } from "lucide-react";
 import { Currency } from "@/types/currency";
-import 'flag-icons/css/flag-icons.min.css';
 
 interface CurrencySelectProps {
   currencies: Currency[];
@@ -52,24 +51,20 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center emoji-element gap-2 px-2 py-2 !rounded-[2rem] bg-white/5 hover:bg-[#3C3C3E] transition-colors max-w-[10rem] !w-screen cursor-pointer"
+        className="flex px-2 py-2 items-center !rounded-[2rem] bg-white/5 hover:bg-[#3C3C3E] transition-colors min-w-[9rem] cursor-pointer"
       >
-        {selectedCurrency.type === "fiat" ? (
-          <span
-            className={`fi fi-${selectedCurrency.symbol!.toLowerCase()} w-8 h-8 rounded-full`}
-            title={`Flag of ${selectedCurrency.symbol!.toUpperCase()}`}
-          />
-        ) : (
+        <div className="flex w-full items-center">
           <img
-            src={selectedCurrency.iconUrl}
+            src={selectedCurrency.type !== "fiat" ? selectedCurrency.iconUrl : `https://flagcdn.com/w40/${selectedCurrency.symbol!.toLowerCase()}.png`}
             alt={selectedCurrency.code}
-            className="w-8 h-8 rounded-full"
+            className="w-8 h-8 rounded-full pr--3"
           />
-        )}
-        <span className="font-medium text-[1.16667rem]">
-          {selectedCurrency.code}
-        </span>
-        <ChevronDown className="w-8 h-8" />
+          <span className="font-medium text-[1.16667rem] ml-3">
+            {selectedCurrency.code}
+          </span>
+          <ChevronDown className="w-8 h-8 ml-auto" />
+        </div>
+
       </button>
 
       {isOpen && (
@@ -100,18 +95,13 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
                   setIsOpen(false);
                 }}
               >
-                {currency.type === "fiat" ? (
-                  <span
-                    className={`fi fi-${currency.symbol!.toLowerCase()} w-8 h-8 rounded-full`}
-                    title={`Flag of ${currency.symbol!.toUpperCase()}`}
-                  />
-                ) : (
-                  <img
-                    src={currency.iconUrl}
-                    alt={currency.code}
-                    className="w-8 h-8 rounded-full"
-                  />
-                )}
+
+                <img
+                  src={currency.type === "fiat" ? `https://flagcdn.com/w40/${currency.symbol!.toLowerCase()}.png` : currency.iconUrl}
+                  alt={currency.code}
+                  className="w-8 h-8 rounded-full"
+                />
+
                 <div className="flex flex-col w-full">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-start gap-2">
